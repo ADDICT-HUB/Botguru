@@ -34,8 +34,8 @@ malvin({
                 forwardingScore: 999,
                 isForwarded: true,
                 forwardedNewsletterMessageInfo: {
-                    newsletterJid: config.NEWSLETTER_JID || '120363299029326322@newsletter',
-                    newsletterName: config.OWNER_NAME || '𝖒𝖆𝖗𝖎𝖘𝖊𝖑',
+                    newsletterJid: config.NEWSLETTER_JID || '120363419810795263@newsletter',
+                    newsletterName: config.OWNER_NAME || 'its guru',
                     serverMessageId: 143
                 }
             }
@@ -60,8 +60,8 @@ malvin({
                 forwardingScore: 999,
                 isForwarded: true,
                 forwardedNewsletterMessageInfo: {
-                    newsletterJid: config.NEWSLETTER_JID || '120363299029326322@newsletter',
-                    newsletterName: config.OWNER_NAME || '𝖒𝖆𝖗𝖎𝖘𝖊𝖑',
+                    newsletterJid: config.NEWSLETTER_JID || '120363419810795263@newsletter',
+                    newsletterName: config.OWNER_NAME || 'its guru',
                     serverMessageId: 143
                 }
             }
@@ -95,8 +95,8 @@ ${stdout || 'PM2 is restarting all processes.'}
                     forwardingScore: 999,
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
-                        newsletterJid: config.NEWSLETTER_JID || '120363299029326322@newsletter',
-                        newsletterName: config.OWNER_NAME || '𝖒𝖆𝖗𝖎𝖘𝖊𝖑',
+                        newsletterJid: config.NEWSLETTER_JID || '120363419810795263@newsletter',
+                        newsletterName: config.OWNER_NAME || 'its guru',
                         serverMessageId: 143
                     }
                 }
@@ -129,8 +129,8 @@ ${stdout || 'PM2 is restarting all processes.'}
                 forwardingScore: 999,
                 isForwarded: true,
                 forwardedNewsletterMessageInfo: {
-                    newsletterJid: config.NEWSLETTER_JID || '120363299029326322@newsletter',
-                    newsletterName: config.OWNER_NAME || '𝖒𝖆𝖗𝖎𝖘𝖊𝖑',
+                    newsletterJid: config.NEWSLETTER_JID || '120363419810795263@newsletter',
+                    newsletterName: config.OWNER_NAME || 'its guru',
                     serverMessageId: 143
                 }
             }
