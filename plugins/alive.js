@@ -33,7 +33,7 @@ malvin({
             }).join("");
 
         const msg = `
-╭──❖ 「 *${toTinyCap("Mercedes Status")}* 」 ❖─
+╭──❖ 「 *${toTinyCap("Guru Status")}* 」 ❖─
 │ 👤 ʜɪ: *${pushname}*
 │ 🕓 ᴛɪᴍᴇ: *${currentTime}*
 │ 📆 ᴅᴀᴛᴇ: *${currentDate}*
