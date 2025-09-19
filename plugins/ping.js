@@ -1,8 +1,9 @@
 const config = require('../settings');
 const { malvin } = require('../malvin');
 const moment = require('moment-timezone');
+const os = require("os");
 
-// Bot start time for uptime calculation
+// Bot start time
 const botStartTime = process.hrtime.bigint();
 
 // Cache for timezone formatting
@@ -10,13 +11,6 @@ const formatCache = new Map();
 
 const emojiSets = {
     reactions: ['⚡', '🚀', '💨', '🎯', '🌟', '💎', '🔥', '✨', '🌀', '🔹'],
-    bars: [
-        '▰▰▰▰▰▰▰▰▰▰',
-        '▰▱▱▱▱▱▱▱▱▱',
-        '▰▰▱▱▱▱▱▱▱▱',
-        '▰▰▰▱▱▱▱▱▱▱',
-        '▰▰▰▰▱▱▱▱▱▱'
-    ],
     status: [
         { threshold: 0.3, text: '🚀 Super Fast' },
         { threshold: 0.6, text: '⚡ Fast' },
@@ -24,6 +18,24 @@ const emojiSets = {
         { threshold: Infinity, text: '🐢 Slow' }
     ]
 };
+
+// CPU usage %
+function getCpuUsage() {
+    const cpus = os.cpus();
+    let idle = 0, total = 0;
+    cpus.forEach(cpu => {
+        for (let type in cpu.times) total += cpu.times[type];
+        idle += cpu.times.idle;
+    });
+    return (100 - Math.round(100 * idle / total));
+}
+
+// Progress bar builder
+function makeBar(value, max = 100, size = 10) {
+    const filled = Math.round((value / max) * size);
+    const empty = size - filled;
+    return '▰'.repeat(filled) + '▱'.repeat(empty);
+}
 
 malvin({
     pattern: 'ping',
@@ -34,112 +46,102 @@ malvin({
     filename: __filename
 }, async (malvin, mek, m, { from, sender, reply }) => {
     try {
-        // High-resolution start time
-        const start = process.hrtime.bigint();
-
-        // Random emoji and loading bar
-        const reactionEmoji = emojiSets.reactions[Math.floor(Math.random() * emojiSets.reactions.length)];
-        const loadingBar = emojiSets.bars[Math.floor(Math.random() * emojiSets.bars.length)];
-
-        // React with emoji (with retry)
-        let attempts = 0;
-        const maxAttempts = 2;
-        while (attempts < maxAttempts) {
-            try {
-                await malvin.sendMessage(from, { react: { text: reactionEmoji, key: mek.key } });
-                break;
-            } catch (reactError) {
-                attempts++;
-                if (attempts === maxAttempts) throw new Error('Failed to send reaction');
-            }
-        }
-
-        // Calculate response time in seconds
-        const responseTime = Number(process.hrtime.bigint() - start) / 1e9;
-
-        // Determine status based on response time
-        const statusText = emojiSets.status.find(s => responseTime < s.threshold)?.text || '🐢 Slow';
-
-        // Time info (cache formatting for performance)
         const timezone = config.TIMEZONE || 'Africa/Harare';
-        const cacheKey = `${timezone}:${moment().format('YYYY-MM-DD HH:mm:ss')}`;
-        let time, date;
-        if (formatCache.has(cacheKey)) {
-            ({ time, date } = formatCache.get(cacheKey));
-        } else {
-            time = moment().tz(timezone).format('HH:mm:ss');
-            date = moment().tz(timezone).format('DD/MM/YYYY');
-            formatCache.set(cacheKey, { time, date });
-            if (formatCache.size > 100) formatCache.clear(); // Prevent memory leak
-        }
-
-        // Uptime
-        const uptimeSeconds = Number(process.hrtime.bigint() - botStartTime) / 1e9;
-        const uptime = moment.duration(uptimeSeconds, 'seconds').humanize();
-
-        // Memory usage
-        const memory = process.memoryUsage();
-        const memoryUsage = `${(memory.heapUsed / 1024 / 1024).toFixed(2)}/${(memory.heapTotal / 1024 / 1024).toFixed(2)} MB`;
-
-        // System info
-        const nodeVersion = process.version;
-
-        // Owner & bot name
         const ownerName = config.OWNER_NAME || 'Guru';
         const botName = config.BOT_NAME || 'Botguru';
         const repoLink = config.REPO || 'https://github.com/ADDICT-HUB/Botguru';
 
-        // Final output
-        const pingMsg = `
+        // Function to build dashboard
+        const makeDashboard = () => {
+            const start = process.hrtime.bigint();
+            const responseTime = Number(process.hrtime.bigint() - start) / 1e9;
+            const statusText = emojiSets.status.find(s => responseTime < s.threshold)?.text || '🐢 Slow';
 
-*${statusText}*
+            // Time info
+            const cacheKey = `${timezone}:${moment().format('YYYY-MM-DD HH:mm:ss')}`;
+            let time, date;
+            if (formatCache.has(cacheKey)) {
+                ({ time, date } = formatCache.get(cacheKey));
+            } else {
+                time = moment().tz(timezone).format('HH:mm:ss');
+                date = moment().tz(timezone).format('DD/MM/YYYY');
+                formatCache.set(cacheKey, { time, date });
+                if (formatCache.size > 100) formatCache.clear();
+            }
 
-⚡ \`Response Time:\` ${responseTime.toFixed(2)}s
-⏰ \`Time:\` ${time} (${timezone})
-📅 \`Date:\` ${date}
-⏱️ \`Uptime:\` ${uptime}
-💾 \`Memory Usage:\` ${memoryUsage}
-🖥️ \`Node Version:\` ${nodeVersion}
+            // Uptime
+            const uptimeSeconds = Number(process.hrtime.bigint() - botStartTime) / 1e9;
+            const uptime = moment.duration(uptimeSeconds, 'seconds').humanize();
 
-💻 \`Developer:\` ${ownerName}
-🤖 \`Bot Name:\` ${botName}
+            // Memory
+            const memory = process.memoryUsage();
+            const usedMB = memory.heapUsed / 1024 / 1024;
+            const totalMB = memory.heapTotal / 1024 / 1024;
+            const memPercent = (usedMB / totalMB) * 100;
 
-🌟 Don't forget to *star* & *fork* the repo!
+            // Node version
+            const nodeVersion = process.version;
+
+            // CPU
+            const cpuPercent = getCpuUsage();
+
+            return `
+╔══════════════════════╗
+   ⚡ BOT GURU ⚡
+╚══════════════════════╝
+
+🟢 *Status*     : ${statusText}
+⚡ *Response*   : ${responseTime.toFixed(2)}s
+⏳ *Uptime*     : ${uptime}
+
+💾 *Memory*     
+   ${makeBar(memPercent)} ${usedMB.toFixed(2)}/${totalMB.toFixed(2)} MB (${memPercent.toFixed(1)}%)
+
+🖥️ *CPU*        
+   ${makeBar(cpuPercent)} ${cpuPercent.toFixed(1)}%
+
+📟 *Node.js*    : ${nodeVersion}
+📅 *Date*       : ${date}
+⏰ *Time*       : ${time} (${timezone})
+
+━━━━━━━━━━━━━━━━━━━━━━━
+👑 *Owner*      : ${ownerName}
+🤖 *Bot Name*   : ${botName}
+
 🔗 ${repoLink}
-
-${loadingBar}
+━━━━━━━━━━━━━━━━━━━━━━━
 `.trim();
+        };
 
-        // Send message with retry
-        attempts = 0;
-        while (attempts < maxAttempts) {
+        // Send first dashboard
+        let sentMsg = await malvin.sendMessage(from, {
+            text: makeDashboard(),
+            contextInfo: {
+                mentionedJid: [sender],
+                forwardingScore: 999,
+                isForwarded: true,
+                forwardedNewsletterMessageInfo: {
+                    newsletterJid: '120363419810795263@newsletter',
+                    newsletterName: `Its guru`,
+                    serverMessageId: 143
+                }
+            }
+        }, { quoted: mek });
+
+        // Auto-refresh every second
+        setInterval(async () => {
             try {
                 await malvin.sendMessage(from, {
-                    text: pingMsg,
-                    contextInfo: {
-                        mentionedJid: [sender],
-                        forwardingScore: 999,
-                        isForwarded: true,
-                        forwardedNewsletterMessageInfo: {
-                            newsletterJid: '120363419810795263@newsletter',
-                            newsletterName: `Its guru`,
-                            serverMessageId: 143
-                        }
-                    }
-                }, { quoted: mek });
-                break;
-            } catch (sendError) {
-                attempts++;
-                if (attempts === maxAttempts) throw new Error('Failed to send message');
+                    edit: sentMsg.key,
+                    text: makeDashboard()
+                });
+            } catch (e) {
+                console.error("⚠️ Auto-refresh error:", e);
             }
-        }
-
-        // Success reaction
-        await malvin.sendMessage(from, { react: { text: '✅', key: mek.key } });
+        }, 1000);
 
     } catch (e) {
         console.error('❌ Ping command error:', e);
         await reply(`❌ Error: ${e.message || 'Failed to process ping command'}`);
-        await malvin.sendMessage(from, { react: { text: '❌', key: mek.key } });
     }
 });
