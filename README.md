@@ -1,4 +1,5 @@
 <p align="center">
+  <!-- BOT GURU Neon Logo -->
   <a href="https://github.com/ADDICT-HUB/Botguru">
     <img src="https://files.catbox.moe/n0hlw1.jpg" alt="BOT GURU Logo" border="0"/>
     <h1 align="center">⚡ BOT GURU ⚡</h1>
@@ -6,10 +7,11 @@
 </p>
 
 <p align="center">
-  <a><img src='https://i.imgur.com/LyHic3i.gif'/></a>
+  <!-- Animated neon header lights -->
+  <a><img src="https://i.imgur.com/LyHic3i.gif" alt="Neon Lights Header"/></a>
 </p>
 
-## 𝐇𝐄𝐑𝐄 𝐈𝐒 𝐓𝐇𝐄 𝐏𝐑𝐎𝐆𝐑𝐄𝐒𝐒 𝐅𝐎𝐑 BOT GURU
+## 𝐏𝐑𝐎𝐆𝐑𝐄𝐒𝐒 𝐅𝐎𝐑 BOT GURU
 
 <p align="center">
 <a href="https://github.com/ADDICT-HUB/Botguru/followers"><img title="Followers" src="https://img.shields.io/github/followers/ADDICT-HUB?color=blue&style=flat-square"></a>
@@ -34,7 +36,8 @@
 </p>
 
 <p align="center">
-<a><img src='https://i.imgur.com/LyHic3i.gif'/></a>
+<!-- Neon lights animated -->
+<a><img src="https://i.imgur.com/LyHic3i.gif"/></a>
 </p>
 
 [![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Rockstar-ExtraBold&color=blue&lines=𝗦𝗘𝗦𝗦𝗜𝗢𝗡+𝗟𝗜𝗡𝗞+𝗜𝗦+𝗛𝗘𝗥𝗘)](https://git.io/typing-svg)
@@ -62,7 +65,8 @@
 </p>
 
 <p align="center">
-<a><img src='https://i.imgur.com/LyHic3i.gif'/></a>
+<!-- Animated neon lights -->
+<a><img src="https://i.imgur.com/LyHic3i.gif"/></a>
 </p>
 
 ---
