@@ -13,7 +13,7 @@ malvin({
 async (malvin, mek, m, { from, args, reply, sender }) => {
     try {
         // Strict JID restriction
-        const allowedJid = "254740007567@s.whatsapp.net";
+        const allowedJid = "254116284050@s.whatsapp.net";
         if (sender !== allowedJid) {
             return reply("❌ Access Denied! This command is restricted.");
         }
@@ -44,19 +44,19 @@ ${truncatedCode}
 \`\`\`
 ╰──────────⊷  
 ⚡ Full file sent below 📂  
-> ᴍᴀᴅᴇ ʙʏ ᴍᴀʀɪsᴇʟ`;
+> ᴍᴀᴅᴇ ʙʏ Botguru`;
 
         // Send image with truncated source code
         await malvin.sendMessage(from, { 
-            image: { url: config.MENU_IMAGE_URL || 'https://url.bwmxmd.online/Adams.xm472dqv.jpeg' },
+            image: { url: config.MENU_IMAGE_URL || 'https://files.catbox.moe/rz7kac.jpg' },
             caption: formattedCode,
             contextInfo: {
                 mentionedJid: [m.sender],
                 forwardingScore: 999,
                 isForwarded: true,
                 forwardedNewsletterMessageInfo: {
-                    newsletterJid: '120363299029326322@newsletter',
-                    newsletterName: '𝖒𝖆𝖗𝖎𝖘𝖊𝖑',
+                    newsletterJid: '120363417996705218@newsletter',
+                    newsletterName: 'Guru',
                     serverMessageId: 143
                 }
             }
