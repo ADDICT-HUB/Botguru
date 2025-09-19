@@ -4,10 +4,27 @@
 </p>
 
 <p align="center">
+
+<!-- Neon Glowing BOT GURU Banner -->
+<a href="https://github.com/ADDICT-HUB/Botguru">
+  <img src="https://img.shields.io/badge/⚡_B_-ff6f61?style=for-the-badge&logo=github&logoColor=white&colorA=ff9a9e&colorB=ff6f61" />
+  <img src="https://img.shields.io/badge/⚡_O_-ffb347?style=for-the-badge&logo=github&logoColor=white&colorA=ff9a9e&colorB=ffb347" />
+  <img src="https://img.shields.io/badge/⚡_T_-ff6f61?style=for-the-badge&logo=github&logoColor=white&colorA=ff9a9e&colorB=ff6f61" />
+  <img src="https://img.shields.io/badge/⚡_G_-00c853?style=for-the-badge&logo=github&logoColor=white&colorA=a5d6a7&colorB=00c853" />
+  <img src="https://img.shields.io/badge/⚡_U_-00bfa5?style=for-the-badge&logo=github&logoColor=white&colorA=26a69a&colorB=00bfa5" />
+  <img src="https://img.shields.io/badge/⚡_R_-2196f3?style=for-the-badge&logo=github&logoColor=white&colorA=64b5f6&colorB=2196f3" />
+  <img src="https://img.shields.io/badge/⚡_U_-9c27b0?style=for-the-badge&logo=github&logoColor=white&colorA=ba68c8&colorB=9c27b0" />
+</a>
+
 </p>
-  <p align="center">
+
+<p align="center">
 ✨ **BOT GURU** – Your WhatsApp Assistant, Fast, Stylish & Powerful!  
 </p>
+
+---
+
+## ⚡ BOT GURU – Deployment & Links
 
 <p align="center">
 
