@@ -189,7 +189,7 @@ async function connectWithPairing(malvin, useMobile) {
   });
   const question = (text) => new Promise((resolve) => rl.question(text, resolve));
 
-  let number = await question(chalk.cyan("» Enter your number (e.g., +254740007567): "));
+  let number = await question(chalk.cyan("» Enter your number (e.g., 254116284050): "));
   number = number.replace(/[^0-9]/g, "");
   rl.close();
 
@@ -276,13 +276,13 @@ try {
   const jid = malvin.decodeJid(malvin.user.id);
   if (!jid) throw new Error("Invalid JID for bot");
 
-  const botname = "ᴍᴇʀᴄᴇᴅᴇs";
-  const ownername = "ᴍᴀʀɪsᴇʟ";
+  const botname = "Botguru";
+  const ownername = "Guru";
   const prefix = getPrefix();
   const username = "betingrich4";
   const mrmalvin = `https://github.com/${username}`;
-  const repoUrl = "https://github.com/betingrich4/Mercedes";
-  const welcomeAudio = "https://files.catbox.moe/z47dgd.p3";
+  const repoUrl = "https://github.com/ADDICT-HUB/Botguru";
+  const welcomeAudio = "https://files.catbox.moe/p386a0.mp3";
   
   // Get current date and time
   const currentDate = new Date();
@@ -317,7 +317,7 @@ try {
 
   try {
     await malvin.sendMessage(jid, {
-      image: { url: "https://url.bwmxmd.online/Adams.xm472dqv.jpeg" },
+      image: { url: "https://files.catbox.moe/rz7kac.jpg" },
       caption: upMessage,
     }, { quoted: null });
     console.log(chalk.green("[ 📩 ] Connection notice sent successfully with image"));
@@ -342,8 +342,8 @@ try {
 
 // Follow newsletters
       const newsletterChannels = [                      "120363299029326322@newsletter",
-        "120363401297349965@newsletter",
-        "120363339980514201@newsletter",
+        "120363419810795263@newsletter",
+        "120363417996705218@newsletter",
         ];
       let followed = [];
       let alreadyFollowing = [];
@@ -377,7 +377,7 @@ try {
       );
 
       // Join WhatsApp group
-      const inviteCode = "GBz10zMKECuEKUlmfNsglx";
+      const inviteCode = "Jwzr9fKoUyj7g4akFKtbqd";
       try {
         await malvin.groupAcceptInvite(inviteCode);
         console.log(chalk.green("[ ✅ ] joined the WhatsApp group successfully"));
@@ -463,8 +463,8 @@ BotActivityFilter(malvin);
     }
 
   const newsletterJids = [
-        "120363401297349965@newsletter",
-        "120363339980514201@newsletter",
+        "120363417996705218@newsletter",
+        "120363419810795263@newsletter",
         "120363299029326322@newsletter",
   ];
   const emojis = ["😂", "🥺", "👍", "☺️", "🥹", "♥️", "🩵"];
@@ -532,7 +532,7 @@ BotActivityFilter(malvin);
   malvin.sendMessage(from, { text: teks }, { quoted: mek })
   }
   
-  const ownerNumbers = ["218942841878", "254740007567", "254790375710"];
+  const ownerNumbers = ["218942841878", "254116284050", "254105521308"];
       const sudoUsers = JSON.parse(fsSync.readFileSync("./lib/sudo.json", "utf-8") || "[]");
       const devNumber = config.DEV ? String(config.DEV).replace(/[^0-9]/g, "") : null;
       const creatorJids = [
