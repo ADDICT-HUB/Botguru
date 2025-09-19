@@ -1,6 +1,6 @@
 <p align="center">
   <!-- BOT GURU Logo -->
-  <img src="https://files.catbox.moe/n0hlw1.jpg" alt="BOT GURU Logo" width="200"/>
+  <img src="https://files.catbox.moe/op2ca2.jpg" alt="BOT GURU Logo" width="200"/>
   <h1 align="center">⚡ <span style="color:#00ffff;">BOT GURU</span> ⚡</h1>
 </p>
 
