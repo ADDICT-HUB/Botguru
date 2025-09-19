@@ -108,7 +108,7 @@ ${config.DESCRIPTION || ""}
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
                         newsletterJid: '120363417996705218@newsletter',
-                        newsletterName: 'GURU',
+                        newsletterName: 'Guru',
                         serverMessageId: 143
                     }
                 }
