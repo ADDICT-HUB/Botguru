@@ -4,7 +4,7 @@ const { malvin } = require('../malvin');
 const fs = require('fs');
 
 let bioInterval;
-const defaultBio = config.AUTO_BIO_TEXT || "ᴠɪsɪᴏɴ ᴠ| ǫᴜᴏᴛᴇ: {quote} | Time: {time}";
+const defaultBio = config.AUTO_BIO_TEXT || "BOT GURU| ǫᴜᴏᴛᴇ: {quote} | Time: {time}";
 const quoteApiUrl = config.QUOTE_API_URL || 'https://apis.davidcyriltech.my.id/random/quotes';
 const updateInterval = config.AUTO_BIO_INTERVAL || 30 * 1000; // Default to 30 seconds
 
