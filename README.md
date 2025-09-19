@@ -29,11 +29,11 @@
 
 <p align="left">
 
-- 🔗 **Pairing Link:** [Click Here](https://session-v35f.onrender.com/pair)  
-- 🕳 **Create Heroku Account:** [Click Here](https://signup.heroku.com/)  
-- 🚀 **Deploy on Heroku:** [Click Here](https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2FADDICT-HUB%2FBotguru)  
-- 📞 **Contact Owner WhatsApp:** [Click Here](https://wa.me/254116284050)  
-- 📺 **Join Telegram Channel:** [Click Here](https://t.me/BOTGURU_CHANNEL)  
+- 🖼️ **Pairing Link:** [![WhatsApp](https://img.shields.io/badge/WhatsApp-Pairing-brightgreen?style=for-the-badge&logo=whatsapp)](https://session-v35f.onrender.com/pair)  
+- 🕳 **Create Heroku Account:** [![Heroku](https://img.shields.io/badge/Heroku-Create Account-purple?style=for-the-badge&logo=heroku)](https://signup.heroku.com/)  
+- 🚀 **Deploy on Heroku:** [![Heroku](https://img.shields.io/badge/Heroku-Deploy-purple?style=for-the-badge&logo=heroku)](https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2FADDICT-HUB%2FBotguru)  
+- 📞 **Contact Owner WhatsApp:** [![WhatsApp](https://img.shields.io/badge/WhatsApp-Contact-green?style=for-the-badge&logo=whatsapp)](https://wa.me/254116284050)  
+- 📢 **Join WhatsApp Channel:** [![WhatsApp](https://img.shields.io/badge/WhatsApp-Channel-brightgreen?style=for-the-badge&logo=whatsapp)](https://chat.whatsapp.com/YOUR_CHANNEL_LINK)  
 
 </p>
 
