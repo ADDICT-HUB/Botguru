@@ -100,15 +100,15 @@ ${config.DESCRIPTION || ""}
         await malvin.sendMessage(
             from,
             {
-                image: { url: "https://files.catbox.moe/rz7kac.jpg" },
+                image: { url: "https://url.bwmxmd.online/Adams.h0gop5c7.jpeg" },
                 caption: dec,
                 contextInfo: {
                     mentionedJid: [m.sender],
                     forwardingScore: 999,
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363417996705218@newsletter',
-                        newsletterName: 'Guru',
+                        newsletterJid: '120363299029326322@newsletter',
+                        newsletterName: '𝖒𝖆𝖗𝖎𝖘𝖊𝖑',
                         serverMessageId: 143
                     }
                 }

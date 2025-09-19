@@ -52,7 +52,7 @@ malvin({
     await malvin.sendMessage(
       from,
       {
-        text: 'Please ask something like `.guru what is free will?`',
+        text: 'Please ask something like `.marisel what is free will?`',
         contextInfo: {
           mentionedJid: [m.sender],
           forwardingScore: 999,
@@ -86,8 +86,8 @@ malvin({
     await malvin.sendMessage(
       from,
       {
-        text: "*Hello! How may GuruAI help you today?*",
-        cono: {
+        text: "*Hello! How may Marisel AI help you today?*",
+        contextInfo: {
           mentionedJid: [m.sender],
           forwardingScore: 999,
           isForwarded: true
@@ -103,18 +103,18 @@ malvin({
   // Handle creator/identity questions
   if (qLower.includes("who made you") || qLower.includes("who created you") || qLower.includes("who is your owner") || 
       qLower.includes("who developed you") || qLower.includes("who are you") || qLower.includes("what are you") ||
-      qLower.includes("who is guru")) {
+      qLower.includes("who is marisel")) {
     await malvin.sendMessage(
       from,
       {
-        text: `*About Me:*\n\n*I'm Guru AI, created by Guru, a 21-year-old full stack developer from Kenya. I'm part of a family that includes Guru and Bugatti bots, all available on GitHub.*\n\n> How may I assist you today?`,
+        text: `*About Me:*\n\n*I'm Marisel AI, created by Marisel, a 21-year-old full stack developer from Kenya. I'm part of a family that includes Mercedes and Bugatti bots, all available on GitHub.*\n\n> How may I assist you today?`,
         contextInfo: {
           mentionedJid: [m.sender],
           forwardingScore: 999,
           isForwarded: true,
           forwardedNewsletterMessageInfo: {
-            newsletterJid: '120363417996705218@newsletter',
-            newsletterName: "Guru",
+            newsletterJid: '120363299029326322@newsletter',
+            newsletterName: "𝖒𝖆𝖗𝖎𝖘𝖊𝖑",
             serverMessageId: 143
           }
         }

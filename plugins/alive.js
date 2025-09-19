@@ -4,7 +4,7 @@ const os = require("os");
 const { runtime } = require('../lib/functions');
 const moment = require("moment");
 
-const ALIVE_IMG = "hhttps://files.catbox.moe/rz7kac.jpg";
+const ALIVE_IMG = "hhttps://url.bwmxmd.online/Adams.xm472dqv.jpeg";
 
 malvin({
     pattern: "alive2",
@@ -33,13 +33,13 @@ malvin({
             }).join("");
 
         const msg = `
-╭──❖ 「 *${toTinyCap("Guru Status")}* 」 ❖─
+╭──❖ 「 *${toTinyCap("Mercedes Status")}* 」 ❖─
 │ 👤 ʜɪ: *${pushname}*
 │ 🕓 ᴛɪᴍᴇ: *${currentTime}*
 │ 📆 ᴅᴀᴛᴇ: *${currentDate}*
 │ 🧭 ᴜᴘᴛɪᴍᴇ: *${uptime}*
 │ ⚙️ ᴍᴏᴅᴇ: *${config.MODE}*
-│ 🔰 BOT GURU: *${config.version}*
+│ 🔰 ᴠᴇʀsɪᴏɴ: *${config.version}*
 ╰─────────❖
         `.trim();
 
@@ -51,8 +51,8 @@ malvin({
                 forwardingScore: 999,
                 isForwarded: true,
                 forwardedNewsletterMessageInfo: {
-                    newsletterJid: '120363417996705218@newsletter',
-                    newsletterName: 'GURU',
+                    newsletterJid: '120363299029326322@newsletter',
+                    newsletterName: '𝖒𝖆𝖗𝖎𝖘𝖊𝖑',
                     serverMessageId: 143
                 }
             }
