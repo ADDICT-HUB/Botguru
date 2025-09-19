@@ -5,9 +5,9 @@ const os = require('os');
 const { runtime } = require('../lib/functions');
 
 const botStartTime = Date.now();
-const ALIVE_IMG = config.ALIVE_IMAGE || 'https://files.catbox.moe/rz7kac.jpg';
-const NEWSLETTER_JID = config.NEWSLETTER_JID || '120363417996705218@newsletter';
-const AUDIO_URL = config.AUDIO_URL || 'https://files.catbox.moe/p386a0.mp3';
+const ALIVE_IMG = config.ALIVE_IMAGE || 'https://url.bwmxmd.online/Adams.0dhfcjpi.jpeg';
+const NEWSLETTER_JID = config.NEWSLETTER_JID || '120363299029326322@newsletter';
+const AUDIO_URL = config.AUDIO_URL || 'https://files.catbox.moe/pjlpd7.mp3';
 
 // Tiny caps mapping for lowercase letters
 const tinyCapsMap = {
@@ -40,10 +40,10 @@ malvin({
     const caption = `
 *┏─〔${pushname}〕─⊷*
 *┇ ᴜᴘᴛɪᴍᴇ: ${uptime}*
-*┇ ʙᴏᴛ Botguru: ${config.BOT_NAME}*
-*┇ Guru: ${config.OWNER_NAME}*
+*┇ ʙᴏᴛ ɴᴀᴍᴇ: ${config.BOT_NAME}*
+*┇ ᴏᴡɴᴇʀ: ${config.OWNER_NAME}*
 *┗──────────────⊷*
-> ᴍᴀᴅᴇ ʙʏ Guru
+> ᴍᴀᴅᴇ ʙʏ ᴍᴀʀɪsᴇʟ
 `.trim();
 
     const buttons = [
