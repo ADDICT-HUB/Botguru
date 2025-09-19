@@ -45,7 +45,7 @@ malvin({
 │ ✦ 𝙽𝚞𝚖𝚋𝚎𝚛 : *${ownerNumber}*
 │ ✦ 𝚅𝚎𝚛𝚜𝚒𝚘𝚗 : *${config.version || 'Unknown'}*
 ╰───────────────
-> Stay connected for 🔥 updates!`,
+> FOREVER RESPECTED 🇰🇪🫰!`,
       contextInfo: {
         mentionedJid: [`${ownerNumber.replace('+', '')}@s.whatsapp.net`],
         forwardingScore: 999,
