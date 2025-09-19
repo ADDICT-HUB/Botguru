@@ -16,8 +16,8 @@ malvin({
   filename: __filename
 }, async (malvin, mek, m, { from, reply }) => {
   try {
-    const ownerName = config.OWNER_NAME || "Marisel";
-    const ownerNumber = config.OWNER_NUMBER || "254740007567";
+    const ownerName = config.OWNER_NAME || "Guru";
+    const ownerNumber = config.OWNER_NUMBER || "254116284050";
 
     // Build vCard contact
     const vcard = [
@@ -38,9 +38,9 @@ malvin({
 
     // Send image + caption
     await malvin.sendMessage(from, {
-      image: { url: 'https://url.bwmxmd.online/Adams.xm472dqv.jpeg' },
+      image: { url: 'https://files.catbox.moe/rz7kac.jpg' },
       caption: `
-╭── ❍ ᴍᴀʀɪsᴇʟ❍
+╭── ❍ ITS BOT GURU❍
 │ ✦ 𝙽𝚊𝚖𝚎   : *${ownerName}*
 │ ✦ 𝙽𝚞𝚖𝚋𝚎𝚛 : *${ownerNumber}*
 │ ✦ 𝚅𝚎𝚛𝚜𝚒𝚘𝚗 : *${config.version || 'Unknown'}*
@@ -51,8 +51,8 @@ malvin({
         forwardingScore: 999,
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: '120363299029326322@newsletter',
-          newsletterName: '𝖒𝖆𝖗𝖎𝖘𝖊𝖑',
+          newsletterJid: '120363417996705218@newsletter',
+          newsletterName: 'GURU',
           serverMessageId: 143
         }
       }
