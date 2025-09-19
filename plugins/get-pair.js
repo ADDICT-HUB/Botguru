@@ -58,7 +58,7 @@ malvin({
             `*PAIRING CODE*\n\n` +
             `🔹 *Phone Number:* ${phoneNumber}\n` +
             `🔹 *Pairing Code:* ${pairingCode}\n` +
-            `🔹 *ᴍᴀᴅᴇ ʙʏ ᴍᴀʀɪsᴇʟ* `
+            `🔹 *ᴍᴀᴅᴇ ʙʏ Botguru* `
         );
 
         // Send clean code after 2-second delay
