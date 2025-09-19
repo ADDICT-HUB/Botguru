@@ -76,14 +76,14 @@ malvin({
     };
 
     let menu = `
-*┏────〘 ᴍᴇʀᴄᴇᴅᴇs 〙───⊷*
-*┃ ᴜꜱᴇʀ : @${sender.split("@")[0]}*
+*┏────〘 BOT GURU 〙───⊷*
+*┃ ᴜꜱᴇʀ : @${sender.spl0]}*
 *┃ ʀᴜɴᴛɪᴍᴇ : ${uptime()}*
 *┃ ᴍᴏᴅᴇ : ${config.MODE}*
 *┃ ᴘʀᴇғɪx : 「 ${config.PREFIX}」* 
-*┃ ᴏᴡɴᴇʀ : ${config.OWNER_NAME}*
+*┃ GURU : ${config.OWNER_NAME}*
 *┃ ᴘʟᴜɢɪɴꜱ : 『 ${commands.length} 』*
-*┃ ᴅᴇᴠ : ᴍᴀʀɪsᴇʟ*
+*┃ ᴅᴇᴠ : GURU*
 *┃ ᴠᴇʀꜱɪᴏɴ : 2.0.0*
 *┗──────────────⊷*`;
 
@@ -115,7 +115,7 @@ malvin({
       forwardingScore: 999,
       isForwarded: true,
       forwardedNewsletterMessageInfo: {
-        newsletterJid: config.NEWSLETTER_JID || '120363299029326322@newsletter',
+        newsletterJid: config.NEWSLETTER_JID || '120363417996705218@newsletter',
         newsletterName: config.OWNER_NAME || toUpperStylized('marisel'),
         serverMessageId: 143
       }
@@ -125,7 +125,7 @@ malvin({
     await malvin.sendMessage(
       from,
       {
-        image: { url: config.MENU_IMAGE_URL || 'https://url.bwmxmd.online/Adams.zjrmnw18.jpeg' },
+        image: { url: config.MENU_IMAGE_URL || 'https://files.catbox.moe/rz7kac.jpg' },
         caption: menu,
         contextInfo: imageContextInfo
       },
