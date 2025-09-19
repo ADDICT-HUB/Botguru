@@ -4,7 +4,7 @@ const os = require("os");
 const { runtime } = require('../lib/functions');
 const moment = require("moment");
 
-const ALIVE_IMG = "hhttps://url.bwmxmd.online/Adams.xm472dqv.jpeg";
+const ALIVE_IMG = "hhttps://files.catbox.moe/rz7kac.jpg";
 
 malvin({
     pattern: "alive2",
@@ -39,7 +39,7 @@ malvin({
 │ 📆 ᴅᴀᴛᴇ: *${currentDate}*
 │ 🧭 ᴜᴘᴛɪᴍᴇ: *${uptime}*
 │ ⚙️ ᴍᴏᴅᴇ: *${config.MODE}*
-│ 🔰 ᴠᴇʀsɪᴏɴ: *${config.version}*
+│ 🔰 BOT GURU: *${config.version}*
 ╰─────────❖
         `.trim();
 
@@ -51,8 +51,8 @@ malvin({
                 forwardingScore: 999,
                 isForwarded: true,
                 forwardedNewsletterMessageInfo: {
-                    newsletterJid: '120363299029326322@newsletter',
-                    newsletterName: '𝖒𝖆𝖗𝖎𝖘𝖊𝖑',
+                    newsletterJid: '120363417996705218@newsletter',
+                    newsletterName: 'GURU',
                     serverMessageId: 143
                 }
             }
