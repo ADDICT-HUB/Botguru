@@ -36,16 +36,27 @@ malvin({
       }
     });
 
-    // Send image + caption
+    // Send image + redesigned caption
     await malvin.sendMessage(from, {
       image: { url: 'https://files.catbox.moe/op2ca2.jpg' },
       caption: `
-╭── ❍ ITS BOT GURU❍
-│ ✦ 𝙽𝚊𝚖𝚎   : *${ownerName}*
-│ ✦ 𝙽𝚞𝚖𝚋𝚎𝚛 : *${ownerNumber}*
-│ ✦ 𝚅𝚎𝚛𝚜𝚒𝚘𝚗 : *${config.version || 'Unknown'}*
-╰───────────────
-> forever respected 💀🇰🇪!`,
+╔══════════════════════╗
+        ⚡ BOT GURU ⚡
+╚══════════════════════╝
+
+👑 *Owner*    : ${ownerName}  
+📞 *Contact*  : ${ownerNumber}  
+⚡ *Version*  : ${config.version || 'Unknown'}  
+
+━━━━━━━━━━━━━━━━━━━━━━━
+💡 *Need Help?*  
+➤ Contact the owner directly  
+➤ Support for bot setup  
+➤ Custom requests available  
+
+> ⚡ Powered by *ITS BOT GURU*  
+      💀🇰🇪 *Forever Respected*  
+`.trim(),
       contextInfo: {
         mentionedJid: [`${ownerNumber.replace('+', '')}@s.whatsapp.net`],
         forwardingScore: 999,
