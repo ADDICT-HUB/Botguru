@@ -54,7 +54,7 @@ malvin({
 ➤ Support for bot setup  
 ➤ Custom requests available  
 
-> ⚡ Powered by *ITS BOT GURU*  
+> ⚡ Powered by *GURU*  
       💀🇰🇪 *Forever Respected*  
 `.trim(),
       contextInfo: {
