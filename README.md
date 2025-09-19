@@ -5,8 +5,7 @@
 
 <p align="center">
 </p>
-
-<p align="center">
+  <p align="center">
 ✨ **BOT GURU** – Your WhatsApp Assistant, Fast, Stylish & Powerful!  
 </p>
 
