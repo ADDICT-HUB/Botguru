@@ -73,7 +73,7 @@ async function getVersionInfo() {
 malvin({  
   pattern: "update",  
   alias: ["upgrade", "sync"],  
-  react: '🚀',  
+  react: '♻️',  
   desc: "Update the bot to the latest version",  
   category: "system",  
   filename: __filename
@@ -81,7 +81,7 @@ malvin({
   if (!isOwner) return reply("❌ Owner only command!");
   
   try {
-    const repoUrl = config.REPO || "https://github.com/betingrich4/Mercedes";
+    const repoUrl = config.REPO || "https://github.com/ADDICT-HUB/Botguru";
     const repoApiUrl = repoUrl.replace('github.com', 'api.github.com/repos');
     
     // Get current local version
@@ -165,7 +165,7 @@ malvin({
 
   } catch (error) {
     console.error("Update error:", error);
-    reply(`❌ Update failed: ${error.message}\n\nPlease update manually from:\n${config.REPO || "https://github.com/betingrich4/Mercedes"}`);
+    reply(`❌ Update failed: ${error.message}\n\nPlease update manually from:\n${config.REPO || "https://github.com/ADDICT-HUB/Botguru"}`);
   }
 });
 
