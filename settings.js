@@ -17,25 +17,25 @@ module.exports = {
   SESSION_ID: settings.SESSION_ID || process.env.SESSION_ID || "", // Bot's session ID (keep secure)
   PREFIX: getConfig("PREFIX") || settings.PREFIX || ".", // Command prefix (e.g., ".", "/", "!")
   CHATBOT: getConfig("CHATBOT") || "on", // Chatbot toggle
-  BOT_NAME: getConfig("BOT_NAME") || process.env.BOT_NAME || "Vision V", // Bot's display name
+  BOT_NAME: getConfig("BOT_NAME") || process.env.BOT_NAME || "Bot GURU", // Bot's display name
   MODE: getConfig("MODE") || process.env.MODE || "private", // Bot mode: public/private/group/inbox
-  REPO: process.env.REPO || "https://github.com/betingrich4/Mercedes", // Bot's GitHub repo
+  REPO: process.env.REPO || "https://github.com/ADDICT-HUB/Botguru", // Bot's GitHub repo
   PAIRING_CODE: process.env.PARING_CODE || 'true', // true or false for terminal pairing
   BAILEYS: process.env.BAILEYS || "@whiskeysockets/baileys", // WhatsApp library
 
   // ===== OWNER & DEVELOPER SETTINGS =====
-  OWNER_NUMBER: settings.OWNER_NUMBER || process.env.OWNER_NUMBER || "254740007567", // Owner's WhatsApp number
-  OWNER_NAME: getConfig("OWNER_NAME") || process.env.OWNER_NAME || "Marisel", // Owner's name
-  DEV: process.env.DEV || "254740007567", // Developer's contact
-  DEVELOPER_NUMBER: '254740007567@s.whatsapp.net', // Developer's WhatsApp ID
+  OWNER_NUMBER: settings.OWNER_NUMBER || process.env.OWNER_NUMBER || "254116284050", // Owner's WhatsApp number
+  OWNER_NAME: getConfig("OWNER_NAME") || process.env.OWNER_NAME || "GURU", // Owner's name
+  DEV: process.env.DEV || "254116284050", // Developer's contact
+  DEVELOPER_NUMBER: '254116284050@s.whatsapp.net', // Developer's WhatsApp ID
   
   
-  MENU_AUDIO_URL: getConfig("MENU_AUDIO_URL") || process.env.MENU_AUDIO_URL || 'https://files.catbox.moe/vkvci3.mp3', // Menu audio
-  AUDIO_URL: getConfig("AUDIO_URL") || process.env.AUDIO_URL || 'https://files.catbox.moe/vkvci3.mp3', // global audio
-  AUDIO_URL2: getConfig("AUDIO_URL2") || process.env.AUDIO_URL2 || 'https://files.catbox.moe/vkvci3.mp3', // global audio
+  MENU_AUDIO_URL: getConfig("MENU_AUDIO_URL") || process.env.MENU_AUDIO_URL || 'https://files.catbox.moe/p386a0.mp3', // Menu audio
+  AUDIO_URL: getConfig("AUDIO_URL") || process.env.AUDIO_URL || 'https://files.catbox.moe/p386a0.mp3', // global audio
+  AUDIO_URL2: getConfig("AUDIO_URL2") || process.env.AUDIO_URL2 || 'https://files.catbox.moe/p386a0.mp3', // global audio
   
   
-  NEWSLETTER_JID: process.env.NEWSLETTER_JID || '120363299029326322@newsletter', // Newsletter JID
+  NEWSLETTER_JID: process.env.NEWSLETTER_JID || '120363417996705218@newsletter', // Newsletter JID
 
   // ===== AUTO-RESPONSE SETTINGS =====
   AUTO_REPLY: getConfig("AUTO_REPLY") || process.env.AUTO_REPLY || "false", // Auto-reply toggle
@@ -43,22 +43,22 @@ module.exports = {
   AUTO_STATUS_MSG: process.env.AUTO_STATUS_MSG || "*Just seen ur status 😆 🤖*", // Status reply message
   READ_MESSAGE: getConfig("READ_MESSAGE") || process.env.READ_MESSAGE || "false", // Mark messages as read
   REJECT_MSG: process.env.REJECT_MSG || "*📵 Calls are not allowed on this number unless you have permission. 🚫*", // Call rejection message
-  ALIVE_IMG: getConfig("ALIVE_IMG") || process.env.ALIVE_IMG || "https://i.ibb.co/fYrXbwbf/malvin-xd.jpg", // Alive image
-  LIVE_MSG: process.env.LIVE_MSG || "> ʙᴏᴛ ɪs sᴘᴀʀᴋɪɴɢ ᴀᴄᴛɪᴠᴇ ᴀɴᴅ ᴀʟɪᴠᴇ\n\n\n> ɢɪᴛʜᴜʙ :* github.com/betingrich4/Mercedes", // Alive message
+  ALIVE_IMG: getConfig("ALIVE_IMG") || process.env.ALIVE_IMG || "https://files.catbox.moe/rz7kac.jpg", // Alive image
+  LIVE_MSG: process.env.LIVE_MSG || "> ʙᴏᴛ ɪs sᴘᴀʀᴋɪɴɢ ᴀᴄᴛɪᴠᴇ ᴀɴᴅ ᴀʟɪᴠᴇ\n\n\n> ɢɪᴛʜᴜʙ :* github.com/ADDICT-HUB/Botguru", // Alive message
 
   // ===== REACTION & STICKER SETTINGS =====
   AUTO_REACT: getConfig("AUTO_REACT") || process.env.AUTO_REACT || "false", // Auto-react to messages
   OWNER_REACT: getConfig("OWNER_REACT") || process.env.OWNER_REACT || "false", // Owner-specific reactions
   CUSTOM_REACT: getConfig("CUSTOM_REACT") || process.env.CUSTOM_REACT || "false", // Custom emoji reactions
   CUSTOM_REACT_EMOJIS: getConfig("CUSTOM_REACT_EMOJIS") || process.env.CUSTOM_REACT_EMOJIS || "💝,💖,💗,❤️‍🩹,❤️,🧡,💛,💚,💙,💜,🤎,🖤,🤍", // Custom reaction emojis
-  STICKER_NAME: process.env.STICKER_NAME || "Mercedes", // Sticker pack name
+  STICKER_NAME: process.env.STICKER_NAME || "BOT GURU", // Sticker pack name
   AUTO_STICKER: getConfig("AUTO_STICKER") || process.env.AUTO_STICKER || "false", // Auto-send stickers
 
   // ===== MEDIA & AUTOMATION =====
   AUTO_RECORDING: getConfig("AUTO_RECORDING") || process.env.AUTO_RECORDING || "false", // Auto-record voice notes
   AUTO_TYPING: getConfig("AUTO_TYPING") || process.env.AUTO_TYPING || "false", // Show typing indicator
   MENTION_REPLY: getConfig("MENTION_REPLY") || process.env.MENTION_REPLY || "false", // Reply to mentions
-  MENU_IMAGE_URL: getConfig("MENU_IMAGE_URL") || process.env.MENU_IMAGE_URL || "https://url.bwmxmd.online/Adams.xm472dqv.jpeg", // Menu image
+  MENU_IMAGE_URL: getConfig("MENU_IMAGE_URL") || process.env.MENU_IMAGE_URL || "https://files.catbox.moe/rz7kac.jpg", // Menu image
 
   // ===== SECURITY & ANTI-FEATURES =====
   ANTI_DELETE: getConfig("ANTI_DELETE") || process.env.ANTI_DELETE || "true", // Prevent message deletion
@@ -72,7 +72,7 @@ module.exports = {
   PM_BLOCKER: getConfig("PM_BLOCKER") || process.env.PM_BLOCKER || "true", // Block private messages
 
   // ===== BOT BEHAVIOR & APPEARANCE =====
-  DESCRIPTION: process.env.DESCRIPTION || "*ᴍᴀᴅᴇ ʙʏ ᴍᴀʀɪsᴇʟ*", // Bot footer
+  DESCRIPTION: process.env.DESCRIPTION || "*ᴍᴀᴅᴇ ʙʏ BOT GURU*", // Bot footer
   PUBLIC_MODE: getConfig("PUBLIC_MODE") || process.env.PUBLIC_MODE || "true", // Allow public commands
   ALWAYS_ONLINE: getConfig("ALWAYS_ONLINE") || process.env.ALWAYS_ONLINE || "false", // Show bot as always online
   AUTO_STATUS_REACT: getConfig("AUTO_STATUS_REACT") || process.env.AUTO_STATUS_REACT || "true", // React to status updates
