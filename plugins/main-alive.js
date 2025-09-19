@@ -5,9 +5,9 @@ const os = require('os');
 const { runtime } = require('../lib/functions');
 
 const botStartTime = Date.now();
-const ALIVE_IMG = config.ALIVE_IMAGE || 'https://url.bwmxmd.online/Adams.0dhfcjpi.jpeg';
-const NEWSLETTER_JID = config.NEWSLETTER_JID || '120363299029326322@newsletter';
-const AUDIO_URL = config.AUDIO_URL || 'https://files.catbox.moe/pjlpd7.mp3';
+const ALIVE_IMG = config.ALIVE_IMAGE || 'https://files.catbox.moe/op2ca2.jpg';
+const NEWSLETTER_JID = config.NEWSLETTER_JID || '120363419810795263@newsletter';
+const AUDIO_URL = config.AUDIO_URL || 'https://files.catbox.moe/p386a0.mp3';
 
 // Tiny caps mapping for lowercase letters
 const tinyCapsMap = {
@@ -40,10 +40,10 @@ malvin({
     const caption = `
 *┏─〔${pushname}〕─⊷*
 *┇ ᴜᴘᴛɪᴍᴇ: ${uptime}*
-*┇ ʙᴏᴛ ɴᴀᴍᴇ: ${config.BOT_NAME}*
-*┇ ᴏᴡɴᴇʀ: ${config.OWNER_NAME}*
+*┇ ʙᴏᴛ Botguru: ${config.BOT_NAME}*
+*┇ Guru: ${config.OWNER_NAME}*
 *┗──────────────⊷*
-> ᴍᴀᴅᴇ ʙʏ ᴍᴀʀɪsᴇʟ
+> ᴍᴀᴅᴇ ʙʏ Guru
 `.trim();
 
     const buttons = [
@@ -105,9 +105,8 @@ malvin({
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
           newsletterJid: NEWSLETTER_JID,
-          newsletterName: toTinyCaps('𝖒𝖆𝖗𝖎𝖘𝖊𝖑'),
-          serverMessageId: 143,
-        },
+          newsletterName: toTinyCaps('Itsguru'),
+          serverMe        },
       },
     }, { quoted: mek });
 
