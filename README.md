@@ -1,24 +1,57 @@
 <p align="center">
-✨ **BOT GURU** ✨  
-*Your WhatsApp Assistant – Fast, Stylish & Powerful!*
+  <!-- Bot Logo -->
+  <img src="https://files.catbox.moe/op2ca2.jpg" alt="BOT GURU Logo" width="150" />
+</p>
+
+<p align="center">
+</p>
+
+<p align="center">
+✨ **BOT GURU** – Your WhatsApp Assistant, Fast, Stylish & Powerful!  
+</p>
+
+<p align="center">
+
+<!-- Repo Button -->
+<a href="https://github.com/ADDICT-HUB/Botguru">
+  <img src="https://img.shields.io/badge/FORK_REPO-Botguru-ff6f61?style=for-the-badge&logo=github&logoColor=white&colorA=ff9a9e&colorB=ff6f61" />
+</a>
+
+<!-- Contact Owner -->
+<a href="https://wa.me/254116284050">
+  <img src="https://img.shields.io/badge/CONTACT-Owner-00c853?style=for-the-badge&logo=whatsapp&logoColor=white&colorA=a5d6a7&colorB=00c853" />
+</a>
+
+<!-- Channel -->
+<a href="https://whatsapp.com/channel/0029VaCdLgAFsBI1z8lqLm0B">
+  <img src="https://img.shields.io/badge/JOIN-Channel-2196f3?style=for-the-badge&logo=telegram&logoColor=white&colorA=64b5f6&colorB=2196f3" />
+</a>
+
+<!-- Pairing -->
+<a href="https://session-v35f.onrender.com/pair">
+  <img src="https://img.shields.io/badge/PAIR_BOT-Session_Generate-9c27b0?style=for-the-badge&logo=fastapi&logoColor=white&colorA=ba68c8&colorB=9c27b0" />
+</a>
+
+<!-- Heroku -->
+<a href="https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2FADDICT-HUB%2FBotguru">
+  <img src="https://img.shields.io/badge/DEPLOY_TO-Heroku-673ab7?style=for-the-badge&logo=heroku&logoColor=white&colorA=9575cd&colorB=673ab7" />
+</a>
+
+<!-- Render -->
+<a href="https://render.com/deploy">
+  <img src="https://img.shields.io/badge/DEPLOY_TO-Render-00bfa5?style=for-the-badge&logo=render&logoColor=white&colorA=26a69a&colorB=00bfa5" />
+</a>
+
+<!-- Koyeb -->
+<a href="https://app.koyeb.com/deploy?type=git&repository=github.com/ADDICT-HUB/Botguru&branch=main&name=botguru">
+  <img src="https://img.shields.io/badge/DEPLOY_TO-Koyeb-121212?style=for-the-badge&logo=koyeb&logoColor=white&colorA=424242&colorB=121212" />
+</a>
 
 </p>
 
 ---
 
-<p align="center">
-  <img src="https://img.shields.io/badge/⚡_BOT_GURU-SUPERFAST-blueviolet?style=for-the-badge&logo=github" />
-  <img src="https://img.shields.io/badge/🔥_Powered_By-Malvin--XD-red?style=for-the-badge&logo=whatsapp" />
-  <img src="https://img.shields.io/badge/✨_Forever-Respected-green?style=for-the-badge&logo=node.js" />
-</p>
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/Platane/snk/output/github-contribution-grid-snake-dark.svg" alt="Snake animation" />
-</p>
-
----
-
-## ⚡ Features
+## ✨ Features
 
 - 🎵 **Media Downloader** – YouTube, TikTok, IG, FB, MediaFire  
 - 🎭 **Fun & Anime** – Anime pics, memes, random fun  
