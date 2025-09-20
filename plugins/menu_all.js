@@ -45,6 +45,17 @@ malvin({
 }, async (malvin, mek, m, { from, sender, reply }) => {
   try {
     const prefix = getPrefix();
+    const timezone = config.TIMEZONE || 'Africa/Nairobi';
+    const time = moment().tz(timezone).format('HH:mm:ss');
+    const date = moment().tz(timezone).format('dddd, DD MMMM YYYY');
+
+    const uptime = () => {
+      let sec = process.uptime();
+      let h = Math.floor(sec / 3600);
+      let m = Math.floor((sec % 3600) / 60);
+      let s = Math.floor(sec % 60);
+      return `${h}h ${m}m ${s}s`;
+    };
 
     // Group commands by category
     const categories = {};
@@ -56,12 +67,47 @@ malvin({
       }
     }
 
-    // Send initial menu message
-    let sentMsg = await malvin.sendMessage(
+    // Build menu with clean design
+    let menu = `
+╔═══════════════╗
+        ⚡ BOT GURU ⚡
+╚═══════════════╝
+
+👤  User     : @${sender.split('@')[0]}
+⏱  Uptime   : ${uptime()}
+🛠  Mode     : ${config.MODE}
+⌨️  Prefix   : ${config.PREFIX}
+👑  Owner    : ${config.OWNER_NAME}
+📦  Plugins  : ${commands.length}
+💻  Dev      : Its guru
+🗂  Version  : 2.0.0
+🕒  Time     : ${time} (${timezone})
+📅  Date     : ${date}
+━━━━━━━━━━━━━━━━━━━━━`;
+
+    for (const cat of Object.keys(categories).sort()) {
+      const emoji = emojiByCategory[cat] || '💫';
+      menu += `\n\n╭─ ${flicker(emoji + ' ' + toUpperStylized(cat) + ' Menu')} ─╮`;
+      menu += `\n│ ${getLoadingBar()}`;
+      for (const cmd of categories[cat].sort()) {
+        menu += `\n│ ${prefix}${cmd}`;
+      }
+      menu += `\n╰─────────────────╯`;
+    }
+
+    // Newsletter section
+    menu += `\n\n╭─ 📰 Newsletter ─╮`;
+    menu += `\n│ Subscribe here: ${config.NEWSLETTER_JID || '120363419810795263@newsletter'}`;
+    menu += `\n╰─────────────────╯`;
+
+    menu += `\n\n> ${config.DESCRIPTION || toUpperStylized('Explore the bot commands!')}`;
+
+    // Send menu once
+    await malvin.sendMessage(
       from,
       {
         image: { url: config.MENU_IMAGE_URL || 'https://files.catbox.moe/op2ca2.jpg' },
-        caption: '⏳ Loading menu...',
+        caption: menu,
         contextInfo: {
           mentionedJid: [sender],
           forwardingScore: 999,
@@ -75,62 +121,6 @@ malvin({
       },
       { quoted: mek }
     );
-
-    // Update menu live every second without spamming
-    const interval = setInterval(async () => {
-      try {
-        const timezone = config.TIMEZONE || 'Africa/Nairobi';
-        const time = moment().tz(timezone).format('HH:mm:ss');
-        const date = moment().tz(timezone).format('dddd, DD MMMM YYYY');
-
-        const uptime = () => {
-          let sec = process.uptime();
-          let h = Math.floor(sec / 3600);
-          let m = Math.floor((sec % 3600) / 60);
-          let s = Math.floor(sec % 60);
-          return `${h}h ${m}m ${s}s`;
-        };
-
-        let menu = `
-*┏────〘 BOT GURU 〙───⊷*
-*┃ ᴜꜱᴇʀ : @${sender.split('@')[0]}*
-*┃ ʀᴜɴᴛɪᴍᴇ : ${uptime()}*
-*┃ ᴍᴏᴅᴇ : ${config.MODE}*
-*┃ ᴘʀᴇғɪx : 「 ${config.PREFIX}」* 
-*┃ ᴏᴡɴᴇʀ : ${config.OWNER_NAME}*
-*┃ ᴘʟᴜɢɪɴꜱ : 『 ${commands.length} 』*
-*┃ ᴅᴇᴠ : Its guru*
-*┃ ᴠᴇʀꜱɪᴏɴ : 2.0.0*
-*┗──────────────⊷*`;
-
-        for (const cat of Object.keys(categories).sort()) {
-          const emoji = emojiByCategory[cat] || '💫';
-          menu += `\n\n*┏─『 ${flicker(emoji + ' ' + toUpperStylized(cat) + ' ' + toUpperStylized('Menu'))} 』──⊷*`;
-          menu += `\n*${getLoadingBar()}*`;
-          for (const cmd of categories[cat].sort()) {
-            menu += `\n*│ ${prefix}${cmd}*`;
-          }
-          menu += `\n*┗──────────────⊷*`;
-        }
-
-        // Newsletter section
-        menu += `\n\n*┏─『 📰 Newsletter 』──⊷*`;
-        menu += `\n*│ Subscribe here: ${config.NEWSLETTER_JID || '120363419810795263@newsletter'}*`;
-        menu += `\n*┗──────────────⊷*`;
-
-        menu += `\n\n> ${config.DESCRIPTION || toUpperStylized('Explore the bot commands!')}`;
-
-        // Edit existing message instead of sending new
-        await malvin.sendMessage(
-          from,
-          { text: menu },
-          { quoted: sentMsg, edit: sentMsg.key }
-        );
-      } catch (err) {
-        console.error('Live menu update error:', err);
-        clearInterval(interval); // stop interval if error
-      }
-    }, 1000);
 
   } catch (e) {
     console.error('Menu Error:', e.message);
