@@ -102,7 +102,7 @@ malvin({
       { quoted: mek }
     );
 
-    // Live update every second
+    // Live update every second without spamming
     const interval = setInterval(async () => {
       try {
         const timezone = config.TIMEZONE || 'Africa/Nairobi';
@@ -145,18 +145,19 @@ malvin({
         menu += `\n*┗──────────────⊷*`;
 
         menu += `\n\n> ${config.DESCRIPTION || toUpperStylized('Explore the bot commands!')}`;
-        
-        // Edit message with live update
+
+        // Edit the original message instead of sending a new one
         await malvin.sendMessage(
           from,
           { text: menu },
-          { quoted: sentMsg, edit: sentMsg.key }
+          { quoted: sentMsg.key, edit: sentMsg.key } // Edit original message
         );
+
       } catch (err) {
         console.error('Live menu update error:', err);
-        clearInterval(interval);
+        clearInterval(interval); // Stop updating if error occurs
       }
-    }, 1000); // update every 1 second
+    }, 1000);
 
   } catch (e) {
     console.error('Menu Error:', e.message);
