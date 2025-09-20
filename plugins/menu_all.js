@@ -16,36 +16,12 @@ function toUpperStylized(str) {
 const normalize = (str) => str.toLowerCase().replace(/\s+menu$/, '').trim();
 
 const emojiByCategory = {
-  ai: '🤖',
-  anime: '🍥',
-  audio: '🎧',
-  bible: '📖',
-  download: '⬇️',
-  downloader: '📥',
-  fun: '🎮',
-  game: '🕹️',
-  group: '👥',
-  img_edit: '🖌️',
-  info: 'ℹ️',
-  information: '🧠',
-  logo: '🖼️',
-  main: '🏠',
-  media: '🎞️',
-  menu: '📜',
-  misc: '📦',
-  music: '🎵',
-  other: '📁',
-  owner: '👑',
-  privacy: '🔒',
-  search: '🔎',
-  settings: '⚙️',
-  sticker: '🌟',
-  tools: '🛠️',
-  user: '👤',
-  utilities: '🧰',
-  utility: '🧮',
-  wallpapers: '🖼️',
-  whatsapp: '📱',
+  ai: '🤖', anime: '🍥', audio: '🎧', bible: '📖', download: '⬇️', downloader: '📥',
+  fun: '🎮', game: '🕹️', group: '👥', img_edit: '🖌️', info: 'ℹ️', information: '🧠',
+  logo: '🖼️', main: '🏠', media: '🎞️', menu: '📜', misc: '📦', music: '🎵',
+  other: '📁', owner: '👑', privacy: '🔒', search: '🔎', settings: '⚙️',
+  sticker: '🌟', tools: '🛠️', user: '👤', utilities: '🧰', utility: '🧮',
+  wallpapers: '🖼️', whatsapp: '📱',
 };
 
 // Flicker header
@@ -82,27 +58,28 @@ malvin({
       }
     }
 
-    // Send initial menu
-    const sentMsg = await malvin.sendMessage(
-      from,
-      {
-        image: { url: config.MENU_IMAGE_URL || 'https://files.catbox.moe/op2ca2.jpg' },
-        caption: 'Loading menu...',
-        contextInfo: {
-          mentionedJid: [sender],
-          forwardingScore: 999,
-          isForwarded: true,
-          forwardedNewsletterMessageInfo: {
-            newsletterJid: config.NEWSLETTER_JID || '120363419810795263@newsletter',
-            newsletterName: config.OWNER_NAME || toUpperStylized('itsguru'),
-            serverMessageId: 143
-          }
-        }
-      },
-      { quoted: mek }
-    );
+    // Send header image once (logo)
+    await malvin.sendMessage(from, {
+      image: { url: config.MENU_IMAGE_URL || 'https://files.catbox.moe/op2ca2.jpg' },
+      caption: flicker('🔹 BOT GURU 🔹')
+    }, { quoted: mek });
 
-    // Live update every second without spamming
+    // Send initial text message
+    const sentMsg = await malvin.sendMessage(from, {
+      text: 'Loading menu... Please wait ⏳',
+      contextInfo: {
+        mentionedJid: [sender],
+        forwardingScore: 999,
+        isForwarded: true,
+        forwardedNewsletterMessageInfo: {
+          newsletterJid: config.NEWSLETTER_JID || '120363419810795263@newsletter',
+          newsletterName: config.OWNER_NAME || toUpperStylized('itsguru'),
+          serverMessageId: 143
+        }
+      }
+    }, { quoted: mek });
+
+    // Live update every second
     const interval = setInterval(async () => {
       try {
         const timezone = config.TIMEZONE || 'Africa/Nairobi';
@@ -117,7 +94,10 @@ malvin({
           return `${h}h ${m}m ${s}s`;
         };
 
+        // Build menu text with logo
         let menu = `
+${flicker('🔹 BOT GURU 🔹')}
+
 *┏────〘 BOT GURU 〙───⊷*
 *┃ ᴜꜱᴇʀ : @${sender.split('@')[0]}*
 *┃ ʀᴜɴᴛɪᴍᴇ : ${uptime()}*
@@ -146,16 +126,14 @@ malvin({
 
         menu += `\n\n> ${config.DESCRIPTION || toUpperStylized('Explore the bot commands!')}`;
 
-        // Edit the original message instead of sending a new one
-        await malvin.sendMessage(
-          from,
-          { text: menu },
-          { quoted: sentMsg.key, edit: sentMsg.key } // Edit original message
-        );
+        // Edit the same text message instead of spamming
+        await malvin.sendMessage(from, {
+          text: menu
+        }, { edit: sentMsg.key });
 
       } catch (err) {
         console.error('Live menu update error:', err);
-        clearInterval(interval); // Stop updating if error occurs
+        clearInterval(interval);
       }
     }, 1000);
 
