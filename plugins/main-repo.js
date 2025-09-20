@@ -11,8 +11,8 @@ malvin({
     filename: __filename,
 },
 async (conn, mek, m, { from, reply }) => {
-    const githubRepoURL = 'https://github.com/betingrich4/Mercedes';
-    const imageURL = 'https://url.bwmxmd.online/Adams.xm472dqv.jpeg';
+    const githubRepoURL = 'https://github.com/ADDICT-HUB/Botguru';
+    const imageURL = 'https://files.catbox.moe/op2ca2.jpg';
 
     try {
         const match = githubRepoURL.match(/github\.com\/([^/]+)\/([^/]+)/);
@@ -57,8 +57,8 @@ async (conn, mek, m, { from, reply }) => {
                 forwardingScore: 999,
                 isForwarded: true,
                 forwardedNewsletterMessageInfo: {
-                    newsletterJid: config.NEWSLETTER_JID || '120363299029326322@newsletter',
-                    newsletterName: '𝖒𝖆𝖗𝖎𝖘𝖊𝖑',
+                    newsletterJid: config.NEWSLETTER_JID || '120363419810795263@newsletter',
+                    newsletterName: 'Its guru',
                     serverMessageId: 143
                 }
             }
@@ -66,7 +66,7 @@ async (conn, mek, m, { from, reply }) => {
 
         // Send audio intro
         await conn.sendMessage(from, {
-            audio: { url: 'https://files.catbox.moe/z47dgd.mp3' },
+            audio: { url: 'https://files.catbox.moe/p386a0.mp3' },
             mimetype: 'audio/mp4',
             ptt: true
         }, { quoted: mek });
