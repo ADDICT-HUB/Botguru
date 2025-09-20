@@ -24,14 +24,12 @@ const emojiByCategory = {
   user: '👤', utilities: '🧰', utility: '🧮', wallpapers: '🖼️', whatsapp: '📱'
 };
 
-// Flicker effect for headers
 function flicker(text) {
   const variants = ['✨', '⚡', '🌟'];
   const random = variants[Math.floor(Math.random() * variants.length)];
   return `${random} ${text} ${random}`;
 }
 
-// Loading bars animation
 const bars = ['▰▱▱▱▱', '▰▰▱▱▱', '▰▰▰▱▱', '▰▰▰▰▱', '▰▰▰▰▰'];
 function getLoadingBar() {
   return bars[Math.floor(Math.random() * bars.length)];
@@ -59,11 +57,11 @@ malvin({
     }
 
     // Send initial menu message
-    const sentMsg = await malvin.sendMessage(
+    let sentMsg = await malvin.sendMessage(
       from,
       {
         image: { url: config.MENU_IMAGE_URL || 'https://files.catbox.moe/op2ca2.jpg' },
-        caption: '✨ Loading BOT GURU menu... ✨',
+        caption: '⏳ Loading menu...',
         contextInfo: {
           mentionedJid: [sender],
           forwardingScore: 999,
@@ -78,9 +76,7 @@ malvin({
       { quoted: mek }
     );
 
-    let lastMenuText = '';
-
-    // Live update every second (only dynamic parts)
+    // Update menu live every second without spamming
     const interval = setInterval(async () => {
       try {
         const timezone = config.TIMEZONE || 'Africa/Nairobi';
@@ -95,15 +91,10 @@ malvin({
           return `${h}h ${m}m ${s}s`;
         };
 
-        // Build menu
         let menu = `
-✨ BOT GURU ✨
-
 *┏────〘 BOT GURU 〙───⊷*
 *┃ ᴜꜱᴇʀ : @${sender.split('@')[0]}*
 *┃ ʀᴜɴᴛɪᴍᴇ : ${uptime()}*
-*┃ ᴛɪᴍᴇ : ${time}*
-*┃ ᴅᴀᴛᴇ : ${date}*
 *┃ ᴍᴏᴅᴇ : ${config.MODE}*
 *┃ ᴘʀᴇғɪx : 「 ${config.PREFIX}」* 
 *┃ ᴏᴡɴᴇʀ : ${config.OWNER_NAME}*
@@ -129,21 +120,17 @@ malvin({
 
         menu += `\n\n> ${config.DESCRIPTION || toUpperStylized('Explore the bot commands!')}`;
 
-        // Only edit if content changed
-        if (menu !== lastMenuText) {
-          await malvin.sendMessage(
-            from,
-            { text: menu },
-            { quoted: sentMsg, edit: sentMsg.key }
-          );
-          lastMenuText = menu;
-        }
-
+        // Edit existing message instead of sending new
+        await malvin.sendMessage(
+          from,
+          { text: menu },
+          { quoted: sentMsg, edit: sentMsg.key }
+        );
       } catch (err) {
         console.error('Live menu update error:', err);
-        clearInterval(interval);
+        clearInterval(interval); // stop interval if error
       }
-    }, 1000); // Update every second
+    }, 1000);
 
   } catch (e) {
     console.error('Menu Error:', e.message);
