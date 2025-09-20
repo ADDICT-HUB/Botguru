@@ -16,15 +16,15 @@ function toUpperStylized(str) {
 const normalize = (str) => str.toLowerCase().replace(/\s+menu$/, '').trim();
 
 const emojiByCategory = {
-  ai: '🤖', anime: '🍥', audio: '🎧', bible: '📖', download: '⬇️', downloader: '📥',
-  fun: '🎮', game: '🕹️', group: '👥', img_edit: '🖌️', info: 'ℹ️', information: '🧠',
-  logo: '🖼️', main: '🏠', media: '🎞️', menu: '📜', misc: '📦', music: '🎵',
-  other: '📁', owner: '👑', privacy: '🔒', search: '🔎', settings: '⚙️',
-  sticker: '🌟', tools: '🛠️', user: '👤', utilities: '🧰', utility: '🧮',
-  wallpapers: '🖼️', whatsapp: '📱',
+  ai: '🤖', anime: '🍥', audio: '🎧', bible: '📖', download: '⬇️',
+  downloader: '📥', fun: '🎮', game: '🕹️', group: '👥', img_edit: '🖌️',
+  info: 'ℹ️', information: '🧠', logo: '🖼️', main: '🏠', media: '🎞️',
+  menu: '📜', misc: '📦', music: '🎵', other: '📁', owner: '👑',
+  privacy: '🔒', search: '🔎', settings: '⚙️', sticker: '🌟', tools: '🛠️',
+  user: '👤', utilities: '🧰', utility: '🧮', wallpapers: '🖼️', whatsapp: '📱'
 };
 
-// Flicker header
+// Flicker effect for headers
 function flicker(text) {
   const variants = ['✨', '⚡', '🌟'];
   const random = variants[Math.floor(Math.random() * variants.length)];
@@ -58,28 +58,29 @@ malvin({
       }
     }
 
-    // Send header image once (logo)
-    await malvin.sendMessage(from, {
-      image: { url: config.MENU_IMAGE_URL || 'https://files.catbox.moe/op2ca2.jpg' },
-      caption: flicker('🔹 BOT GURU 🔹')
-    }, { quoted: mek });
-
-    // Send initial text message
-    const sentMsg = await malvin.sendMessage(from, {
-      text: 'Loading menu... Please wait ⏳',
-      contextInfo: {
-        mentionedJid: [sender],
-        forwardingScore: 999,
-        isForwarded: true,
-        forwardedNewsletterMessageInfo: {
-          newsletterJid: config.NEWSLETTER_JID || '120363419810795263@newsletter',
-          newsletterName: config.OWNER_NAME || toUpperStylized('itsguru'),
-          serverMessageId: 143
+    // Send initial menu message
+    const sentMsg = await malvin.sendMessage(
+      from,
+      {
+        image: { url: config.MENU_IMAGE_URL || 'https://files.catbox.moe/op2ca2.jpg' },
+        caption: '✨ Loading BOT GURU menu... ✨',
+        contextInfo: {
+          mentionedJid: [sender],
+          forwardingScore: 999,
+          isForwarded: true,
+          forwardedNewsletterMessageInfo: {
+            newsletterJid: config.NEWSLETTER_JID || '120363419810795263@newsletter',
+            newsletterName: config.OWNER_NAME || toUpperStylized('itsguru'),
+            serverMessageId: 143
+          }
         }
-      }
-    }, { quoted: mek });
+      },
+      { quoted: mek }
+    );
 
-    // Live update every second
+    let lastMenuText = '';
+
+    // Live update every second (only dynamic parts)
     const interval = setInterval(async () => {
       try {
         const timezone = config.TIMEZONE || 'Africa/Nairobi';
@@ -94,13 +95,15 @@ malvin({
           return `${h}h ${m}m ${s}s`;
         };
 
-        // Build menu text with logo
+        // Build menu
         let menu = `
-${flicker('🔹 BOT GURU 🔹')}
+✨ BOT GURU ✨
 
 *┏────〘 BOT GURU 〙───⊷*
 *┃ ᴜꜱᴇʀ : @${sender.split('@')[0]}*
 *┃ ʀᴜɴᴛɪᴍᴇ : ${uptime()}*
+*┃ ᴛɪᴍᴇ : ${time}*
+*┃ ᴅᴀᴛᴇ : ${date}*
 *┃ ᴍᴏᴅᴇ : ${config.MODE}*
 *┃ ᴘʀᴇғɪx : 「 ${config.PREFIX}」* 
 *┃ ᴏᴡɴᴇʀ : ${config.OWNER_NAME}*
@@ -119,23 +122,28 @@ ${flicker('🔹 BOT GURU 🔹')}
           menu += `\n*┗──────────────⊷*`;
         }
 
-        // Newsletter restored
+        // Newsletter section
         menu += `\n\n*┏─『 📰 Newsletter 』──⊷*`;
         menu += `\n*│ Subscribe here: ${config.NEWSLETTER_JID || '120363419810795263@newsletter'}*`;
         menu += `\n*┗──────────────⊷*`;
 
         menu += `\n\n> ${config.DESCRIPTION || toUpperStylized('Explore the bot commands!')}`;
 
-        // Edit the same text message instead of spamming
-        await malvin.sendMessage(from, {
-          text: menu
-        }, { edit: sentMsg.key });
+        // Only edit if content changed
+        if (menu !== lastMenuText) {
+          await malvin.sendMessage(
+            from,
+            { text: menu },
+            { quoted: sentMsg, edit: sentMsg.key }
+          );
+          lastMenuText = menu;
+        }
 
       } catch (err) {
         console.error('Live menu update error:', err);
         clearInterval(interval);
       }
-    }, 1000);
+    }, 1000); // Update every second
 
   } catch (e) {
     console.error('Menu Error:', e.message);
