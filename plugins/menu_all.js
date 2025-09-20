@@ -1,11 +1,8 @@
 const config = require('../settings');
 const moment = require('moment-timezone');
 const { malvin, commands } = require('../malvin');
-const { runtime } = require('../lib/functions');
-const os = require('os');
 const { getPrefix } = require('../lib/prefix');
 
-// Fonction pour styliser les majuscules comme ʜɪ
 function toUpperStylized(str) {
   const stylized = {
     A: 'ᴀ', B: 'ʙ', C: 'ᴄ', D: 'ᴅ', E: 'ᴇ', F: 'ғ', G: 'ɢ', H: 'ʜ',
@@ -16,10 +13,8 @@ function toUpperStylized(str) {
   return str.split('').map(c => stylized[c.toUpperCase()] || c).join('');
 }
 
-// Normalisation des catégories
 const normalize = (str) => str.toLowerCase().replace(/\s+menu$/, '').trim();
 
-// Emojis par catégorie normalisée
 const emojiByCategory = {
   ai: '🤖',
   anime: '🍥',
@@ -53,6 +48,19 @@ const emojiByCategory = {
   whatsapp: '📱',
 };
 
+// Flicker header
+function flicker(text) {
+  const variants = ['✨', '⚡', '🌟'];
+  const random = variants[Math.floor(Math.random() * variants.length)];
+  return `${random} ${text} ${random}`;
+}
+
+// Loading bars animation
+const bars = ['▰▱▱▱▱', '▰▰▱▱▱', '▰▰▰▱▱', '▰▰▰▰▱', '▰▰▰▰▰'];
+function getLoadingBar() {
+  return bars[Math.floor(Math.random() * bars.length)];
+}
+
 malvin({
   pattern: 'menu',
   alias: ['allmenu'],
@@ -63,31 +71,8 @@ malvin({
 }, async (malvin, mek, m, { from, sender, reply }) => {
   try {
     const prefix = getPrefix();
-    const timezone = config.TIMEZONE || 'Africa/Nairobi';
-    const time = moment().tz(timezone).format('HH:mm:ss');
-    const date = moment().tz(timezone).format('dddd, DD MMMM YYYY');
 
-    const uptime = () => {
-      let sec = process.uptime();
-      let h = Math.floor(sec / 3600);
-      let m = Math.floor((sec % 3600) / 60);
-      let s = Math.floor(sec % 60);
-      return `${h}h ${m}m ${s}s`;
-    };
-
-    let menu = `
-*┏────〘 ᴍᴇʀᴄᴇᴅᴇs 〙───⊷*
-*┃ ᴜꜱᴇʀ : @${sender.split("@")[0]}*
-*┃ ʀᴜɴᴛɪᴍᴇ : ${uptime()}*
-*┃ ᴍᴏᴅᴇ : ${config.MODE}*
-*┃ ᴘʀᴇғɪx : 「 ${config.PREFIX}」* 
-*┃ ᴏᴡɴᴇʀ : ${config.OWNER_NAME}*
-*┃ ᴘʟᴜɢɪɴꜱ : 『 ${commands.length} 』*
-*┃ ᴅᴇᴠ : ᴍᴀʀɪsᴇʟ*
-*┃ ᴠᴇʀꜱɪᴏɴ : 2.0.0*
-*┗──────────────⊷*`;
-
-    // Group commands by category (improved logic)
+    // Group commands by category
     const categories = {};
     for (const cmd of commands) {
       if (cmd.category && !cmd.dontAdd && cmd.pattern) {
@@ -97,63 +82,81 @@ malvin({
       }
     }
 
-    // Add sorted categories with stylized text
-    for (const cat of Object.keys(categories).sort()) {
-      const emoji = emojiByCategory[cat] || '💫';
-      menu += `\n\n*┏─『 ${emoji} ${toUpperStylized(cat)} ${toUpperStylized('Menu')} 』──⊷*\n`;
-      for (const cmd of categories[cat].sort()) {
-        menu += `*│ ${prefix}${cmd}*\n`;
-      }
-      menu += `*┗──────────────⊷*`;
-    }
-
-    menu += `\n\n> ${config.DESCRIPTION || toUpperStylized('Explore the bot commands!')}`;
-
-    // Context info for image message
-    const imageContextInfo = {
-      mentionedJid: [sender],
-      forwardingScore: 999,
-      isForwarded: true,
-      forwardedNewsletterMessageInfo: {
-        newsletterJid: config.NEWSLETTER_JID || '120363299029326322@newsletter',
-        newsletterName: config.OWNER_NAME || toUpperStylized('marisel'),
-        serverMessageId: 143
-      }
-    };
-
-    // Send menu image
-    await malvin.sendMessage(
+    // Send initial menu
+    const sentMsg = await malvin.sendMessage(
       from,
       {
-        image: { url: config.MENU_IMAGE_URL || 'https://url.bwmxmd.online/Adams.zjrmnw18.jpeg' },
-        caption: menu,
-        contextInfo: imageContextInfo
+        image: { url: config.MENU_IMAGE_URL || 'https://files.catbox.moe/op2ca2.jpg' },
+        caption: 'Loading menu...',
+        contextInfo: {
+          mentionedJid: [sender],
+          forwardingScore: 999,
+          isForwarded: true,
+          forwardedNewsletterMessageInfo: {
+            newsletterJid: config.NEWSLETTER_JID || '120363419810795263@newsletter',
+            newsletterName: config.OWNER_NAME || toUpperStylized('itsguru'),
+            serverMessageId: 143
+          }
+        }
       },
       { quoted: mek }
     );
 
-    // Send audio if configured
-    if (config.MENU_AUDIO_URL) {
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      await malvin.sendMessage(
-        from,
-        {
-          audio: { url: config.MENU_AUDIO_URL },
-          mimetype: 'audio/mp4',
-          ptt: true,
-          contextInfo: {
-            mentionedJid: [sender],
-            forwardingScore: 999,
-            isForwarded: true,
-            forwardedNewsletterMessageInfo: {
-              newsletterName: config.OWNER_NAME || toUpperStylized('marisel'),
-              serverMessageId: 143
-            }
+    // Live update every second
+    const interval = setInterval(async () => {
+      try {
+        const timezone = config.TIMEZONE || 'Africa/Nairobi';
+        const time = moment().tz(timezone).format('HH:mm:ss');
+        const date = moment().tz(timezone).format('dddd, DD MMMM YYYY');
+
+        const uptime = () => {
+          let sec = process.uptime();
+          let h = Math.floor(sec / 3600);
+          let m = Math.floor((sec % 3600) / 60);
+          let s = Math.floor(sec % 60);
+          return `${h}h ${m}m ${s}s`;
+        };
+
+        let menu = `
+*┏────〘 BOT GURU 〙───⊷*
+*┃ ᴜꜱᴇʀ : @${sender.split('@')[0]}*
+*┃ ʀᴜɴᴛɪᴍᴇ : ${uptime()}*
+*┃ ᴍᴏᴅᴇ : ${config.MODE}*
+*┃ ᴘʀᴇғɪx : 「 ${config.PREFIX}」* 
+*┃ ᴏᴡɴᴇʀ : ${config.OWNER_NAME}*
+*┃ ᴘʟᴜɢɪɴꜱ : 『 ${commands.length} 』*
+*┃ ᴅᴇᴠ : Its guru*
+*┃ ᴠᴇʀꜱɪᴏɴ : 2.0.0*
+*┗──────────────⊷*`;
+
+        for (const cat of Object.keys(categories).sort()) {
+          const emoji = emojiByCategory[cat] || '💫';
+          menu += `\n\n*┏─『 ${flicker(emoji + ' ' + toUpperStylized(cat) + ' ' + toUpperStylized('Menu'))} 』──⊷*`;
+          menu += `\n*${getLoadingBar()}*`;
+          for (const cmd of categories[cat].sort()) {
+            menu += `\n*│ ${prefix}${cmd}*`;
           }
-        },
-        { quoted: mek }
-      );
-    }
+          menu += `\n*┗──────────────⊷*`;
+        }
+
+        // Newsletter restored
+        menu += `\n\n*┏─『 📰 Newsletter 』──⊷*`;
+        menu += `\n*│ Subscribe here: ${config.NEWSLETTER_JID || '120363419810795263@newsletter'}*`;
+        menu += `\n*┗──────────────⊷*`;
+
+        menu += `\n\n> ${config.DESCRIPTION || toUpperStylized('Explore the bot commands!')}`;
+        
+        // Edit message with live update
+        await malvin.sendMessage(
+          from,
+          { text: menu },
+          { quoted: sentMsg, edit: sentMsg.key }
+        );
+      } catch (err) {
+        console.error('Live menu update error:', err);
+        clearInterval(interval);
+      }
+    }, 1000); // update every 1 second
 
   } catch (e) {
     console.error('Menu Error:', e.message);
