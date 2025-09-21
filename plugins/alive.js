@@ -6,7 +6,7 @@ const moment = require("moment-timezone");
 
 malvin({
     pattern: "alive",
-    alias: ["alive2", "botstatus"],
+    alias: ["alive2"],
     desc: "Check bot status & uptime",
     category: "main",
     react: "💡",
@@ -27,15 +27,8 @@ malvin({
         const uptime = runtime(process.uptime());
         const mem = (process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2);
 
-        // Random alive images
-        const images = [
-            "https://files.catbox.moe/op2ca2.jpg",
-            "https://files.catbox.moe/abcd12.jpg",
-            "https://files.catbox.moe/efgh34.jpg"
-        ];
-        const ALIVE_IMG = images[Math.floor(Math.random() * images.length)];
+        const ALIVE_IMG = "https://files.catbox.moe/op2ca2.jpg"; // your main image
 
-        // Fancy header/footer
         const msg = `
 ╭─★✨ *BOT GURU ALIVE* ✨★─╮
 │ ${greeting}, *${pushname}*
@@ -53,19 +46,12 @@ malvin({
             {
                 image: { url: ALIVE_IMG },
                 caption: msg,
-                footer: "BOT GURU Control Panel",
-                buttons: [
-                    { buttonId: ".menu",  buttonText: { displayText: "📜 MENU" }, type: 1 },
-                    { buttonId: ".owner", buttonText: { displayText: "👤 OWNER" }, type: 1 },
-                    { buttonId: ".ping",  buttonText: { displayText: "⚡ PING" }, type: 1 }
-                ],
-                headerType: 4,
                 contextInfo: {
                     mentionedJid: [m.sender],
                     forwardingScore: 999,
                     isForwarded: true,
+                    // ✅ Your newsletter kept intact
                     forwardedNewsletterMessageInfo: {
-                        // ✅ Your Newsletter details kept here
                         newsletterJid: "120363419810795263@newsletter",
                         newsletterName: "its guru",
                         serverMessageId: 143
