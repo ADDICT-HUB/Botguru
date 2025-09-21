@@ -60,31 +60,6 @@ malvin({
     // Group commands by category
     const categories = {};
     for (const cmd of commands) {
-malvin({
-  pattern: 'menu',
-  alias: ['allmenu'],
-  desc: 'Show all bot commands',
-  category: 'menu',
-  react: '👌',
-  filename: __filename
-}, async (malvin, mek, m, { from, sender, reply }) => {
-  try {
-    const prefix = getPrefix();
-    const timezone = config.TIMEZONE || 'Africa/Nairobi';
-    const time = moment().tz(timezone).format('HH:mm:ss');
-    const date = moment().tz(timezone).format('dddd, DD MMMM YYYY');
-
-    const uptime = () => {
-      let sec = process.uptime();
-      let h = Math.floor(sec / 3600);
-      let m = Math.floor((sec % 3600) / 60);
-      let s = Math.floor(sec % 60);
-      return `${h}h ${m}m ${s}s`;
-    };
-
-    // Group commands by category
-    const categories = {};
-    for (const cmd of commands) {
       if (cmd.category && !cmd.dontAdd && cmd.pattern) {
         const normalizedCategory = normalize(cmd.category);
         categories[normalizedCategory] = categories[normalizedCategory] || [];
@@ -92,7 +67,7 @@ malvin({
       }
     }
 
-    // Build menu
+    // Build menu with clean design
     let menu = `
 ╔═══════════════╗
         ⚡ BOT GURU ⚡
@@ -120,38 +95,34 @@ malvin({
       menu += `\n╰─────────────────╯`;
     }
 
+    // Newsletter section
     menu += `\n\n╭─ 📰 Newsletter ─╮`;
     menu += `\n│ Subscribe here: ${config.NEWSLETTER_JID || '120363419810795263@newsletter'}`;
     menu += `\n╰─────────────────╯`;
 
     menu += `\n\n> ${config.DESCRIPTION || toUpperStylized('Explore the bot commands!')}`;
 
-    // Send menu
+    // Send menu once
     await malvin.sendMessage(
       from,
       {
         image: { url: config.MENU_IMAGE_URL || 'https://files.catbox.moe/op2ca2.jpg' },
         caption: menu,
-        contextInfo: {
-          mentionedJid: [sender],
-          forwardingScore: 999,
-          isForwarded: true,
-          forwardedNewsletterMessageInfo: {
-            newsletterJid: config.NEWSLETTER_JID || '120363419810795263@newsletter',
-            newsletterName: config.OWNER_NAME || toUpperStylized('itsguru'),
-            serverMessageId: 143
-          }
-        }
+        contextInfo: { mentionedJid: [sender] }
       },
       { quoted: mek }
     );
 
-    // Send audio file immediately after menu
-    const audioUrl = config.MENU_AUDIO_URL || 'https://files.catbox.moe/qiml76.mp3'; // replace with your audio link
-    await malvin.sendMessage(from, { audio: { url: audioUrl }, mimetype: 'audio/mp4', ptt: true }, { quoted: mek });
+    // --- Send music/audio immediately after the menu ---
+    const audioUrl = config.MENU_AUDIO_URL || 'https://files.catbox.moe/p386a0.mp3';
+    await malvin.sendMessage(from, {
+      audio: { url: audioUrl },
+      mimetype: 'audio/mp4',
+      ptt: false
+    }, { quoted: mek });
 
   } catch (e) {
     console.error('Menu Error:', e.message);
-    await reply(`❌ ${toUpperStylized('Error')}: Failed to show menu. Try again.\n${toUpperStylized('Details')}: ${e.message}`);
+    await reply(`❌ ${toUpperStylized('Error')}: Failed to show menu.\n${toUpperStylized('Details')}: ${e.message}`);
   }
 });
