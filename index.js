@@ -148,7 +148,7 @@ async function loadSession() {
       return sessionData;
     } else if (config.SESSION_ID.startsWith("Botguru~")) {
       console.log(chalk.yellow("[ ⏳ ] Downloading MEGA.nz session..."));
-      const megaFileId = config.SESSION_ID.replace("Bothuru~", "");
+      const megaFileId = config.SESSION_ID.replace("Botguru~", "");
       const filer = File.fromURL(`https://mega.nz/file/${megaFileId}`);
       const data = await new Promise((resolve, reject) => {
         filer.download((err, data) => {
