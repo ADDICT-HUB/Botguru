@@ -1,15 +1,11 @@
-const fs = require('fs');
-const path = require('path');
-const config = require('../settings')
-const {malvin , commands} = require('../malvin')
+const config = require('../settings');
+const { malvin } = require('../malvin');
 
-
-// Composing (Auto Typing)
 malvin({
     on: "body"
-},    
-async (malvin, mek, m, { from, body, isOwner }) => {
-    if (config.AUTO_TYPING === 'true') {
-        await malvin.sendPresenceUpdate('composing', from); // send typing 
+}, async (bot, mek, m, { from }) => {
+    if (config.AUTO_TYPING === 'true' || config.AUTO_TYPING === true) {
+        // Show typing for a short time each time a message is received
+        await bot.sendPresenceUpdate('composing', from);
     }
 });
