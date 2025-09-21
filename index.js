@@ -282,7 +282,7 @@ try {
   const username = "betingrich4";
   const mrmalvin = `https://github.com/${username}`;
   const repoUrl = "https://github.com/ADDICT-HUB/Botguru";
-  const welcomeAudio = "https://files.catbox.moe/p386a0.mp3";
+  const welcomeAudio = "https://files.catbox.moe/qiml76.mp3";
   
   // Get current date and time
   const currentDate = new Date();
