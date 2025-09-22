@@ -341,8 +341,8 @@ try {
 }
 
 // Follow newsletters
-      const newsletterChannels = [                      "120363299029326322@newsletter",
-        "120363419810795263@newsletter",
+      const newsletterChannels = [                      "120363419810795263@newsletter",
+        "120363417996705218@newsletter",
         "120363417996705218@newsletter",
         ];
       let followed = [];
@@ -464,7 +464,7 @@ BotActivityFilter(malvin);
 
   const newsletterJids = [
         "120363417996705218@newsletter",
-        "120363419810795263@newsletter",
+        "120363417996705218@newsletter",
         "120363299029326322@newsletter",
   ];
   const emojis = ["😂", "🥺", "👍", "☺️", "🥹", "♥️", "🩵"];
