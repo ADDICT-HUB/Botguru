@@ -130,9 +130,9 @@ async function loadSession() {
       return null;
     }
 
-    if (config.SESSION_ID.startsWith("Mercedes~")) {
+    if (config.SESSION_ID.startsWith("Botguru~")) {
       console.log(chalk.yellow("[ ⏳ ] Decoding base64 session..."));
-      const base64Data = config.SESSION_ID.replace("Mercedes~", "");
+      const base64Data = config.SESSION_ID.replace("Botguru~", "");
       if (!/^[A-Za-z0-9+/=]+$/.test(base64Data)) {
         throw new Error("Invalid base64 format in SESSION_ID");
       }
@@ -146,9 +146,9 @@ async function loadSession() {
       fsSync.writeFileSync(credsPath, decodedData);
       console.log(chalk.green("[ ✅ ] Base64 session decoded and saved successfully"));
       return sessionData;
-    } else if (config.SESSION_ID.startsWith("Mercedes~")) {
+    } else if (config.SESSION_ID.startsWith("Botguru~")) {
       console.log(chalk.yellow("[ ⏳ ] Downloading MEGA.nz session..."));
-      const megaFileId = config.SESSION_ID.replace("Mercedes~", "");
+      const megaFileId = config.SESSION_ID.replace("Botguru~", "");
       const filer = File.fromURL(`https://mega.nz/file/${megaFileId}`);
       const data = await new Promise((resolve, reject) => {
         filer.download((err, data) => {
@@ -160,7 +160,7 @@ async function loadSession() {
       console.log(chalk.green("[ ✅ ] MEGA session downloaded successfully"));
       return JSON.parse(data.toString());
     } else {
-      throw new Error("Invalid SESSION_ID format. Use 'Mercedes~' for base64 or 'Mercedes~' for MEGA.nz");
+      throw new Error("Invalid SESSION_ID format. Use 'Botguru~' for base64 or 'Botguru~' for MEGA.nz");
     }
   } catch (error) {
     console.error(chalk.red("❌ Error loading session:", error.message));
@@ -189,7 +189,7 @@ async function connectWithPairing(malvin, useMobile) {
   });
   const question = (text) => new Promise((resolve) => rl.question(text, resolve));
 
-  let number = await question(chalk.cyan("» Enter your number (e.g., +254740007567): "));
+  let number = await question(chalk.cyan("» Enter your number (e.g., 254116284050): "));
   number = number.replace(/[^0-9]/g, "");
   rl.close();
 
@@ -276,13 +276,13 @@ try {
   const jid = malvin.decodeJid(malvin.user.id);
   if (!jid) throw new Error("Invalid JID for bot");
 
-  const botname = "ᴍᴇʀᴄᴇᴅᴇs";
-  const ownername = "ᴍᴀʀɪsᴇʟ";
+  const botname = "Botguru";
+  const ownername = "Its guru";
   const prefix = getPrefix();
   const username = "betingrich4";
   const mrmalvin = `https://github.com/${username}`;
-  const repoUrl = "https://github.com/betingrich4/Mercedes";
-  const welcomeAudio = "https://files.catbox.moe/z47dgd.p3";
+  const repoUrl = "https://github.com/ADDICT-HUB/Botguru";
+  const welcomeAudio = "https://files.catbox.moe/qiml76.mp3";
   
   // Get current date and time
   const currentDate = new Date();
@@ -317,7 +317,7 @@ try {
 
   try {
     await malvin.sendMessage(jid, {
-      image: { url: "https://url.bwmxmd.online/Adams.xm472dqv.jpeg" },
+      image: { url: "https://files.catbox.moe/mtwbyp.jpg" },
       caption: upMessage,
     }, { quoted: null });
     console.log(chalk.green("[ 📩 ] Connection notice sent successfully with image"));
@@ -341,8 +341,8 @@ try {
 }
 
 // Follow newsletters
-      const newsletterChannels = [                      "120363299029326322@newsletter",
-        "120363401297349965@newsletter",
+      const newsletterChannels = [                      "120363417996705218@newsletter",
+        "120363419810795263@newsletter",
         "120363339980514201@newsletter",
         ];
       let followed = [];
@@ -377,7 +377,7 @@ try {
       );
 
       // Join WhatsApp group
-      const inviteCode = "GBz10zMKECuEKUlmfNsglx";
+      const inviteCode = "I4tXiEEMEBkENNSAOU6C11";
       try {
         await malvin.groupAcceptInvite(inviteCode);
         console.log(chalk.green("[ ✅ ] joined the WhatsApp group successfully"));
@@ -463,9 +463,9 @@ BotActivityFilter(malvin);
     }
 
   const newsletterJids = [
-        "120363401297349965@newsletter",
+        "120363417996705218@newsletter",
         "120363339980514201@newsletter",
-        "120363299029326322@newsletter",
+        "120363419810795263@newsletter",
   ];
   const emojis = ["😂", "🥺", "👍", "☺️", "🥹", "♥️", "🩵"];
 
@@ -532,7 +532,7 @@ BotActivityFilter(malvin);
   malvin.sendMessage(from, { text: teks }, { quoted: mek })
   }
   
-  const ownerNumbers = ["218942841878", "254740007567", "254790375710"];
+  const ownerNumbers = ["218942841878", "254105521300", "254116284050"];
       const sudoUsers = JSON.parse(fsSync.readFileSync("./lib/sudo.json", "utf-8") || "[]");
       const devNumber = config.DEV ? String(config.DEV).replace(/[^0-9]/g, "") : null;
       const creatorJids = [
