@@ -1,23 +1,32 @@
 const fs = require('fs');
 const path = require('path');
-const config = require('../settings')
-const {malvin , commands} = require('../malvin')
+const config = require('../settings');
+const { malvin } = require('../malvin');
 
-//auto reply 
+const filePath = path.join(__dirname, '../autos/autoreply.json');
+
+// Load autoreplies once at startup
+let autoReplies = {};
+try {
+    autoReplies = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+} catch (e) {
+    console.error('❌ Failed to load autoreplies:', e.message);
+}
+
+// Auto reply
 malvin({
-  on: "body"
-},    
-async (malvin, mek, m, { from, body, isOwner }) => {
-    const filePath = path.join(__dirname, '../autos/autoreply.json');
-    const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-    for (const text in data) {
-        if (body.toLowerCase() === text.toLowerCase()) {
-            
-            if (config.AUTO_REPLY === 'true') {
-                //if (isOwner) return;        
-                await m.reply(data[text])
-            
-            }
+    on: "body"
+}, async (malvin, mek, m, { from, body, isOwner }) => {
+    if (!body) return;
+    const text = body.toLowerCase();
+
+    for (const key in autoReplies) {
+        if (text === key.toLowerCase()) {
+            if (config.AUTO_REPLY !== 'true') return;
+            // Skip owner if you want
+            // if (isOwner) return;
+
+            await malvin.sendMessage(from, { text: autoReplies[key] }, { quoted: mek });
         }
-    }                
+    }
 });
