@@ -30,9 +30,9 @@ module.exports = {
   DEVELOPER_NUMBER: '254116284050@s.whatsapp.net',
   
   // ===== AUDIO & MEDIA =====
-  MENU_AUDIO_URL: getConfig("MENU_AUDIO_URL") || process.env.MENU_AUDIO_URL || 'https://files.catbox.moe/p386a0.mp3',
-  AUDIO_URL: getConfig("AUDIO_URL") || process.env.AUDIO_URL || 'https://files.catbox.moe/p386a0.mp3',
-  AUDIO_URL2: getConfig("AUDIO_URL2") || process.env.AUDIO_URL2 || 'https://files.catbox.moe/p386a0.mp3',
+  MENU_AUDIO_URL: getConfig("MENU_AUDIO_URL") || process.env.MENU_AUDIO_URL || 'https://files.catbox.moe/qiml76.mp3',
+  AUDIO_URL: getConfig("AUDIO_URL") || process.env.AUDIO_URL || 'https://files.catbox.moe/qiml76.mp3',
+  AUDIO_URL2: getConfig("AUDIO_URL2") || process.env.AUDIO_URL2 || 'https://files.catbox.moe/qiml76.mp3',
   
   NEWSLETTER_JID: process.env.NEWSLETTER_JID || '120363417996705218@newsletter',
 
