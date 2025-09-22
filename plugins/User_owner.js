@@ -38,7 +38,7 @@ malvin({
 
     // Send image + redesigned caption
     await malvin.sendMessage(from, {
-      image: { url: 'https://files.catbox.moe/op2ca2.jpg' },
+      image: { url: 'https://files.catbox.moe/vshhlt.jpg' },
       caption: `
 ╔══════════════════════╗
         ⚡ BOT GURU ⚡
@@ -54,7 +54,7 @@ malvin({
 ➤ Support for bot setup  
 ➤ Custom requests available  
 
-> ⚡ Powered by *GURU*  
+> ⚡ 🇰🇪Powered by *GURU*  
       💀🇰🇪 *Forever Respected*  
 `.trim(),
       contextInfo: {
