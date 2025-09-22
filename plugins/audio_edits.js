@@ -1,34 +1,41 @@
 const fs = require('fs');
-const myfunc = require('../lib/myfunc.cjs');
+const { getBuffer, downloadMediaMessage } = require('../lib/msg');
 
-module.exports = async (malvin, m) => {
-    try {
-        // Only continue if there’s audio or a voice note
-        if (!m.msg || (!m.msg.audioMessage && !m.msg.voiceMessage)) return;
+module.exports = {
+    name: 'audioEdit',
+    description: 'Process audio from URL or WhatsApp media',
 
-        // Download the audio
-        const audioBuffer = await malvin.downloadMediaMessage(m.msg);
-        const timestamp = Date.now();
-        const inputFile = `./temp_${timestamp}.ogg`; // downloaded audio
-        const outputFile = `./converted_${timestamp}.mp3`; // converted MP3
+    run: async (bot, m, args) => {
+        try {
+            let buffer;
 
-        fs.writeFileSync(inputFile, audioBuffer);
+            // Case 1: Media in WhatsApp message (audio, voice note, document)
+            if (m.msg?.audioMessage || m.msg?.voiceMessage || m.msg?.documentMessage) {
+                buffer = await downloadMediaMessage(m.msg);
+            } 
+            // Case 2: URL provided
+            else if (args[0] && /^https?:\/\//.test(args[0])) {
+                buffer = await getBuffer(args[0]);
+            } 
+            else {
+                return m.reply('⚠️ Please send an audio message or provide a valid audio URL.');
+            }
 
-        // Convert to MP3 using myfunc
-        await myfunc.convertToMp3(inputFile, outputFile);
+            // Save temporarily
+            if (!fs.existsSync('./temp')) fs.mkdirSync('./temp');
+            const fileName = `audio_${Date.now()}.mp3`;
+            const filePath = `./temp/${fileName}`;
+            fs.writeFileSync(filePath, buffer);
 
-        // Send converted audio back to chat
-        await malvin.sendMessage(
-            m.chat,
-            { audio: fs.readFileSync(outputFile), mimetype: 'audio/mpeg' },
-            { quoted: m }
-        );
+            // Send audio back to WhatsApp
+            await bot.sendMessage(m.chat, { audio: fs.readFileSync(filePath), mimetype: 'audio/mp3' }, { quoted: m });
 
-        // Cleanup temp files
-        fs.unlinkSync(inputFile);
-        fs.unlinkSync(outputFile);
+            // Delete temp file
+            fs.unlinkSync(filePath);
 
-    } catch (err) {
-        console.log('[Audio Edit Error]', err);
+        } catch (err) {
+            console.error('Audio Edit Error:', err);
+            m.reply('❌ Failed to process audio.');
+        }
     }
 };
